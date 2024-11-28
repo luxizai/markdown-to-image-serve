@@ -15,13 +15,13 @@ export default async function handler(
     const { markdown } = req.body;
 
     // 启动浏览器
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
     // 设置视口大小
     await page.setViewport({ width: 1200, height: 1600 });
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3001";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const url = `/poster?content=${encodeURIComponent(markdown)}`;
     const fullUrl = `${baseUrl}${url}`;
     console.log('fullUrl=========>>>', fullUrl)
