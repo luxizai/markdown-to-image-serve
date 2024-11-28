@@ -10,3 +10,4 @@ node_modules
 .env.production.local
 public/uploads/posters/*
 .env.local
+.vercel
