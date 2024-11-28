@@ -10,7 +10,7 @@ export default function Header() {
       <div className="max-w-6xl flex w-full items-center justify-between">
         <div className="font-medium text-xl text-indigo-900 flex items-center gap-2">
           {/* <div>logo</div> */}
-          <Link href="/">markdown-to-poster</Link>
+          <Link href="/">markdown-to-poster-plus</Link>
         </div>
         <div className="flex items-center justify-center gap-1 text-sm font-light text-indigo-900/90">
           <p
