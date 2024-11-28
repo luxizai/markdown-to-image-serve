@@ -75,7 +75,9 @@ export default async function handler(
     // 生成唯一文件名
     const fileName = `poster-${Date.now()}.png`;
     // 保存路径 (public/uploads/posters/)
-    const saveDir = path.join(process.cwd(), "public", "uploads", "posters");
+    const saveDir = process.env.NODE_ENV === 'production' 
+      ? path.join('/tmp', 'uploads', 'posters')
+      : path.join(process.cwd(), "public", "uploads", "posters");
     const savePath = path.join(saveDir, fileName);
 
     // 确保目录存在
@@ -97,7 +99,9 @@ export default async function handler(
     await browser.close();
 
     // 返回可访问的URL
-    const imageUrl = `/uploads/posters/${fileName}`;
+    const imageUrl = process.env.NODE_ENV === 'production'
+      ? `/api/images/${fileName}` // 新的 API 路由来处理图片
+      : `/uploads/posters/${fileName}`;
     res.status(200).json({ url: `${baseUrl}${imageUrl}` });
   } catch (error) {
     console.error(error);
