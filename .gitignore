@@ -1,5 +1,4 @@
 *.mdx
-*.md
 *.mdx.js
 *.md.js
 node_modules
