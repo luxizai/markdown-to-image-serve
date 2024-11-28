@@ -31,7 +31,7 @@ export default function Header() {
                 "
           >
             <a
-              href="https://github.com/gcui-art/markdown-to-poster"
+              href="https://github.com/wxingheng/markdown-to-image-plus"
               target="_blank"
               className="flex items-center justify-center gap-1"
             >

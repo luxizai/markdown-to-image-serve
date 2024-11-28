@@ -17,7 +17,7 @@ export default function Footer() {
              hover:text-white duration-200"
       >
         <span>© 2024</span>
-        <Link href="https://github.com/gcui-art/suno-api/">gcui-art/markdown-to-poster</Link>
+        <Link href="https://github.com/wxingheng/markdown-to-image-plus">wxingheng/markdown-to-image-plus</Link>
       </p>
     </footer>
   )
