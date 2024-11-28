@@ -24,7 +24,7 @@ export default async function handler(
     //   args: ['--no-sandbox', '--disable-setuid-sandbox']
     // });
     const browser = await puppeteer.launch({
-      // args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+      args: [...chromium.args, '--hide-scrollbars', '--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox'],
       defaultViewport: chromium.defaultViewport,
       executablePath: process.env.NODE_ENV === 'production' ? await chromium.executablePath(
         `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
