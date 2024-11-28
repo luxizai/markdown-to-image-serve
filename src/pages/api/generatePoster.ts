@@ -32,19 +32,15 @@ export default async function handler(
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
-    console.log('browser=========>>> 22222')
 
     const page = await browser.newPage();
 
     // 设置视口大小
     await page.setViewport({ width: 1200, height: 1600 });
 
-    console.log('process.env.NEXT_PUBLIC_BASE_URL=========>>>', process.env.NEXT_PUBLIC_BASE_URL, process.env.CHROME_PATH) 
-
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const url = `/poster?content=${encodeURIComponent(markdown)}`;
     const fullUrl = `${baseUrl}${url}`;
-    console.log('fullUrl=========>>>', fullUrl)
 
     await page.goto(fullUrl);
 
