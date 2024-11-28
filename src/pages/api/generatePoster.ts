@@ -5,6 +5,8 @@ import fs from "fs";
 const chromium = require("@sparticuz/chromium-min");
 const puppeteer = require("puppeteer-core");
 
+export const maxDuration = 30; 
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
