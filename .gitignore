@@ -1,10 +1,10 @@
-*.mdx
-*.mdx.js
-*.md.js
+# *.mdx
+# *.mdx.js
+# *.md.js
 node_modules
 .next
-.env
-.env.local
+# .env
+# .env.local
 .env.development.local
 .env.test.local
 .env.production.local
