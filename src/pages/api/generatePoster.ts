@@ -27,7 +27,7 @@ export default async function handler(
       // args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
       defaultViewport: chromium.defaultViewport,
       executablePath: process.env.NODE_ENV === 'production' ? await chromium.executablePath(
-        `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+        `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
       ) :  process.env.CHROME_PATH,
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
