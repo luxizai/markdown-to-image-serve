@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import puppeteer from "puppeteer";
+// import puppeteer from "puppeteer";
 import path from "path";
 import fs from "fs";
+const chromium = require('@sparticuz/chromium-min');
+const puppeteer = require('puppeteer-core');
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,11 +18,22 @@ export default async function handler(
 
     // 启动浏览器
     // const browser = await puppeteer.launch({ headless: true });
+    // const browser = await puppeteer.launch({
+    //   headless: true,
+    //   executablePath: process.env.CHROME_PATH || '/opt/bin/chromium',
+    //   args: ['--no-sandbox', '--disable-setuid-sandbox']
+    // });
     const browser = await puppeteer.launch({
-      headless: true,
-      executablePath: process.env.CHROME_PATH || '/opt/bin/chromium',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      // args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+      defaultViewport: chromium.defaultViewport,
+      executablePath: process.env.NODE_ENV === 'production' ? await chromium.executablePath(
+        `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+      ) :  process.env.CHROME_PATH,
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
     });
+    console.log('browser=========>>> 22222')
+
     const page = await browser.newPage();
 
     // 设置视口大小

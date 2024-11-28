@@ -6,8 +6,7 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall" : "npx puppeteer install --path ./.cache/puppeteer"
+    "lint": "next lint"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.0.1",
@@ -19,6 +18,7 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
+    "@sparticuz/chromium-min": "^131.0.1",
     "@types/mdx": "^2.0.13",
     "@uiw/react-md-editor": "^4.0.4",
     "@vercel/analytics": "^1.2.2",
@@ -27,7 +27,7 @@
     "lucide-react": "^0.378.0",
     "markdown-to-poster": "^0.0.9",
     "next": "14.2.3",
-    "puppeteer": "^23.9.0",
+    "puppeteer-core": "^23.9.0",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.3.0",
