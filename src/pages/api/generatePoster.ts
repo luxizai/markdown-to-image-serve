@@ -38,12 +38,15 @@ export default async function handler(
             ]
           : [],
       defaultViewport: chromium.defaultViewport,
-      executablePath:
-        process.env.NODE_ENV === "production"
-          ? await chromium.executablePath(
-              `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
-            )
-          : process.env.CHROME_PATH,
+      // executablePath:
+      //   process.env.NODE_ENV === "production"
+      //     ? await chromium.executablePath(
+      //         `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
+      //       )
+      //     : process.env.CHROME_PATH,
+      executablePath: await chromium.executablePath(
+        `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
+      ),
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
@@ -61,7 +64,7 @@ export default async function handler(
     )}`;
     const fullUrl = `${baseUrl}${url}`;
 
-    await page.goto(fullUrl);
+    await page.goto(fullUrl, { encoding: "utf-8" });
 
     // 等待海报元素渲染完成
     await page.waitForSelector(".poster-content");
@@ -134,9 +137,8 @@ export default async function handler(
     await browser.close();
 
     res.setHeader("Content-Type", "image/png");
-    // res.send(posterBuffer);
-    res.status(200).json({ fullUrl });
-
+    res.send(posterBuffer);
+    // res.status(200).json({ fullUrl });
     // res.status(200).json({ base64: `data:image/png;base64,${base64Image}`, url:  `${baseUrl}${imageUrl}` });
   } catch (error) {
     console.error(error);
