@@ -65,7 +65,9 @@ export default async function handler(
 
     await page.evaluateOnNewDocument(() => {
       document.documentElement.lang = "zh-CN";
-      document.charset = "UTF-8";
+      const meta = document.createElement('meta');
+      meta.setAttribute('charset', 'UTF-8');
+      document.head.appendChild(meta);
     });
 
     // 注入字体CSS
