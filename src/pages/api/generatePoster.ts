@@ -101,7 +101,7 @@ export default async function handler(
 
     // 在截图前确保字体已加载
     await page.waitForFunction(() => document.fonts.ready);
-    await page.waitForTimeout(1000); // 额外等待以确保字体完全加载
+    await new Promise(resolve => setTimeout(resolve, 1000)); // 额外等待以确保字体完全加载
 
     // 等待海报元素渲染完成
     await page.waitForSelector(".poster-content", { timeout: 10000 });
