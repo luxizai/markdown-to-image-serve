@@ -137,8 +137,8 @@ export default async function handler(
     await browser.close();
 
     res.setHeader("Content-Type", "image/png");
-    res.send(posterBuffer);
-    // res.status(200).json({ fullUrl });
+    // res.send(posterBuffer);
+    res.status(200).json({ fullUrl });
     // res.status(200).json({ base64: `data:image/png;base64,${base64Image}`, url:  `${baseUrl}${imageUrl}` });
   } catch (error) {
     console.error(error);
