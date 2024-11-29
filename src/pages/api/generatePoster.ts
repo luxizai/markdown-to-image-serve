@@ -56,6 +56,7 @@ export default async function handler(
           : process.env.CHROME_PATH,
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
+      font: await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf')),
     });
 
     const page = await browser.newPage();
