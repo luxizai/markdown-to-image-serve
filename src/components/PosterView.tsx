@@ -30,6 +30,12 @@ export default function PosterView() {
 
   return (
     <div className="poster-content" style={{display: "inline-block"}}>
+      <style jsx>{`
+       @font-face {
+          font-family: 'Noto Sans SC';
+          src: url('/NotoSansSC-Regular.otf') format('opentype');
+        }
+      `}</style>
       <span>asd发售的客服了解</span>
           {/* Preview */}
             <Md2Poster theme="SpringGradientWave" >
