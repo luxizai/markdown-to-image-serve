@@ -58,15 +58,27 @@ export default async function handler(
 
     const page = await browser.newPage();
 
-    // 在访问页面前设置默认字体
+    // 设置字体和编码
+    await page.setExtraHTTPHeaders({
+      "Accept-Language": "zh-CN,zh;q=0.9",
+    });
+
     await page.evaluateOnNewDocument(() => {
-      document.head.innerHTML += `
-    <style>
-      * {
-        font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif !important;
-      }
-    </style>
-  `;
+      document.documentElement.lang = "zh-CN";
+      document.charset = "UTF-8";
+    });
+
+    // 注入字体CSS
+    await page.evaluateOnNewDocument(() => {
+      const style = document.createElement("style");
+      style.textContent = `
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        * {
+          font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 
+          'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+        }
+      `;
+      document.head.appendChild(style);
     });
 
     // 设置视口大小
@@ -81,10 +93,17 @@ export default async function handler(
     )}`;
     const fullUrl = `${baseUrl}${url}`;
 
-    await page.goto(fullUrl, { encoding: "utf-8" });
+    // 设置页面编码和等待时间
+    await page.goto(fullUrl, {
+      waitUntil: "networkidle0",
+      timeout: 30000,
+    });
+
+    // 等待字体加载
+    await page.waitForFunction(() => document.fonts.ready);
 
     // 等待海报元素渲染完成
-    await page.waitForSelector(".poster-content");
+    await page.waitForSelector(".poster-content", { timeout: 10000 });
 
     // 等待所有图片加载完成
     // await page.evaluate(() => {
@@ -149,6 +168,7 @@ export default async function handler(
       },
       // encoding: "base64",
       type: "png",
+      omitBackground: false,
     });
 
     await browser.close();
