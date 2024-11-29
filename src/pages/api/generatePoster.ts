@@ -25,23 +25,16 @@ export default async function handler(
     //   args: ['--no-sandbox', '--disable-setuid-sandbox']
     // });
     const browser = await puppeteer.launch({
-      // args: [...chromium.args, '--hide-scrollbars', '--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox'],
-      // 只有 production 环境才需要 args
-      args:
-        process.env.NODE_ENV === "production"
-          ? [
-              ...chromium.args,
-              "--hide-scrollbars",
-              "--disable-web-security",
-              "--no-sandbox",
-              "--disable-setuid-sandbox",
-              // 添加字体相关配置
-              "--font-render-hinting=none",
-              "--force-color-profile=srgb",
-              // 允许加载系统字体
-              "--allow-file-access-from-files",
-            ]
-          : [],
+      args: [
+        ...(process.env.NODE_ENV === "production" ? chromium.args : []),
+        "--hide-scrollbars",
+        "--disable-web-security",
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--font-render-hinting=none",
+        "--force-color-profile=srgb",
+        "--allow-file-access-from-files",
+      ],
       defaultViewport: chromium.defaultViewport,
       executablePath:
         process.env.NODE_ENV === "production"
@@ -49,9 +42,6 @@ export default async function handler(
               `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
             )
           : process.env.CHROME_PATH,
-      // executablePath: await chromium.executablePath(
-      //   `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
-      // ),
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
@@ -67,17 +57,25 @@ export default async function handler(
       document.documentElement.lang = "zh-CN";
       const meta = document.createElement('meta');
       meta.setAttribute('charset', 'UTF-8');
-      document.head.appendChild(meta);
+      document.head.insertBefore(meta, document.head.firstChild);
     });
 
-    // 注入字体CSS
+    // 修改字体注入方式
     await page.evaluateOnNewDocument(() => {
       const style = document.createElement("style");
       style.textContent = `
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        @font-face {
+          font-family: 'Noto Sans SC';
+          font-style: normal;
+          font-weight: 400;
+          src: url('https://fonts.gstatic.com/s/notosanssc/v36/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.103.woff2') format('woff2');
+          unicode-range: U+4E00-9FFF;
+        }
         * {
-          font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 
-          'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+          font-family: 'Noto Sans SC', sans-serif !important;
+        }
+        body {
+          font-family: 'Noto Sans SC', sans-serif !important;
         }
       `;
       document.head.appendChild(style);
@@ -101,8 +99,9 @@ export default async function handler(
       timeout: 30000,
     });
 
-    // 等待字体加载
+    // 在截图前确保字体已加载
     await page.waitForFunction(() => document.fonts.ready);
+    await page.waitForTimeout(1000); // 额外等待以确保字体完全加载
 
     // 等待海报元素渲染完成
     await page.waitForSelector(".poster-content", { timeout: 10000 });
