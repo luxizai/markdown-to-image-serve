@@ -91,7 +91,18 @@ export default async function handler(
 
     // 设置视口大小
     await page.setViewport({ width: 1200, height: 1600 });
-    // await page.setDefaultEncoding('utf-8');
+    // 加载中文字体
+    await page.addStyleTag({
+      content: `
+      @font-face {
+        font-family: 'SimSun';
+        src: url('https://cdn.jsdelivr.net/gh/rabbit/simsun/simsun.ttf') format('truetype');
+      }
+      body {
+        font-family: 'SimSun', sans-serif;
+      }
+    `,
+    });
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const url = `/poster?content=${encodeURIComponent(
