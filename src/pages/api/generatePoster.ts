@@ -35,6 +35,11 @@ export default async function handler(
               "--disable-web-security",
               "--no-sandbox",
               "--disable-setuid-sandbox",
+              // 添加字体相关配置
+              "--font-render-hinting=none",
+              "--force-color-profile=srgb",
+              // 允许加载系统字体
+              "--allow-file-access-from-files",
             ]
           : [],
       defaultViewport: chromium.defaultViewport,
@@ -52,6 +57,17 @@ export default async function handler(
     });
 
     const page = await browser.newPage();
+
+    // 在访问页面前设置默认字体
+    await page.evaluateOnNewDocument(() => {
+      document.head.innerHTML += `
+    <style>
+      * {
+        font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif !important;
+      }
+    </style>
+  `;
+    });
 
     // 设置视口大小
     await page.setViewport({ width: 1200, height: 1600 });
