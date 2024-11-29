@@ -84,10 +84,10 @@ export default async function handler(
           unicode-range: U+4E00-9FFF;
         }
         * {
-          font-family: 'Noto Sans SC', sans-serif !important;
+         font-family: 'SimSun', sans-serif !important;
         }
         body {
-          font-family: 'Noto Sans SC', sans-serif !important;
+         font-family: 'SimSun' !important;
         }
       `;
       document.head.appendChild(style);
@@ -100,7 +100,7 @@ export default async function handler(
       content: `
       @font-face {
         font-family: 'SimSun';
-        src: url('https://cdn.jsdelivr.net/gh/rabbit/simsun/simsun.ttf') format('truetype');
+        src: url('/fonts/SimSun.ttf') format('truetype');
       }
       body {
         font-family: 'SimSun', sans-serif;
