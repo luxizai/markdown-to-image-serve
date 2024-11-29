@@ -38,15 +38,15 @@ export default async function handler(
             ]
           : [],
       defaultViewport: chromium.defaultViewport,
-      // executablePath:
-      //   process.env.NODE_ENV === "production"
-      //     ? await chromium.executablePath(
-      //         `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
-      //       )
-      //     : process.env.CHROME_PATH,
-      executablePath: await chromium.executablePath(
-        `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
-      ),
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? await chromium.executablePath(
+              `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
+            )
+          : process.env.CHROME_PATH,
+      // executablePath: await chromium.executablePath(
+      //   `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
+      // ),
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
@@ -55,7 +55,7 @@ export default async function handler(
 
     // 设置视口大小
     await page.setViewport({ width: 1200, height: 1600 });
-    await page.setDefaultEncoding('utf-8');
+    // await page.setDefaultEncoding('utf-8');
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const url = `/poster?content=${encodeURIComponent(
