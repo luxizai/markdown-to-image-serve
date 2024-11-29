@@ -47,3 +47,21 @@ curl --location 'http://127.0.0.1:3000/api/generatePoster' \
     "footer": "footer_text"
 }'
 ```
+
+
+```
+curl --location 'https://markdown-to-image-plus.vercel.app/api/generatePoster' \
+--header 'Content-Type: application/json' \
+--data '{
+    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
+}'
+```
+
+
+### todo
+- 实现海报生成 API 接口
+- 添加海报模板配置功能
+- 优化图片加载性能
+- 添加错误处理和日志记录
+- 实现海报预览功能
+- 添加用户自定义样式选项
