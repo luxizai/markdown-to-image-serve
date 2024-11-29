@@ -3,6 +3,7 @@ import path from "path";
 const chromium = require("@sparticuz/chromium-min");
 const puppeteer = require("puppeteer-core");
 const fs = require("fs");
+const files = fs.readdirSync('/var/task/fonts');
 
 export const maxDuration = 60;
 
@@ -24,6 +25,11 @@ export default async function handler(
     //   executablePath: process.env.CHROME_PATH || '/opt/bin/chromium',
     //   args: ['--no-sandbox', '--disable-setuid-sandbox']
     // });
+
+    for (let file of files) {
+      await chromium.font(file);
+    }
+
     const browser = await puppeteer.launch({
       args: [
         ...(process.env.NODE_ENV === "production" ? chromium.args : []),
