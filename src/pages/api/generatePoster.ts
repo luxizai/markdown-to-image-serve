@@ -27,14 +27,21 @@ export default async function handler(
     const browser = await puppeteer.launch({
       args: [
         ...(process.env.NODE_ENV === "production" ? chromium.args : []),
-        "--hide-scrollbars",
-        "--disable-web-security",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--no-first-run",
         "--no-sandbox",
-        "--disable-setuid-sandbox",
+        "--disable-web-security",
+        "--ignore-certificate-errors",
+        "--disable-font-subpixel-positioning",
+        "--font-render-hinting=none",
+        // "--hide-scrollbars",
+        // "--disable-web-security",
+        // "--no-sandbox",
+        // "--disable-setuid-sandbox",
         // "--font-render-hinting=none",
-        "--force-color-profile=srgb",
-        "--allow-file-access-from-files",
-        "--font-render-hinting medium"
+        // "--force-color-profile=srgb",
+        // "--allow-file-access-from-files",
       ],
       defaultViewport: chromium.defaultViewport,
       executablePath:
@@ -56,8 +63,8 @@ export default async function handler(
 
     await page.evaluateOnNewDocument(() => {
       document.documentElement.lang = "zh-CN";
-      const meta = document.createElement('meta');
-      meta.setAttribute('charset', 'UTF-8');
+      const meta = document.createElement("meta");
+      meta.setAttribute("charset", "UTF-8");
       document.head.insertBefore(meta, document.head.firstChild);
     });
 
@@ -102,7 +109,7 @@ export default async function handler(
 
     // 在截图前确保字体已加载
     await page.waitForFunction(() => document.fonts.ready);
-    await new Promise(resolve => setTimeout(resolve, 1000)); // 额外等待以确保字体完全加载
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // 额外等待以确保字体完全加载
 
     // 等待海报元素渲染完成
     await page.waitForSelector(".poster-content", { timeout: 10000 });
