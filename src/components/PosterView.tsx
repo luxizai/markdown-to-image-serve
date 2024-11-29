@@ -24,9 +24,9 @@ const defaultContentMd = `# AI的发展
 export default function PosterView() {
   // 需要根据url参数，作为mdString 的默认值
   const searchParams = useSearchParams()
-  const mdString = searchParams?.get('content') || defaultContentMd
-  const headerString = searchParams?.get('header') || 'News'
-  const footerString = searchParams?.get('footer') || 'Powered by AI Poster'
+  const mdString = decodeURIComponent(searchParams?.get('content')|| defaultContentMd) 
+  const headerString = decodeURIComponent(searchParams?.get('header') || 'News')
+  const footerString = decodeURIComponent(searchParams?.get('footer') || 'Powered by AI Poster')
 
   return (
     <div className="poster-content" style={{display: "inline-block"}}>
