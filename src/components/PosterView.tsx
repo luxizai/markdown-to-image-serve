@@ -25,7 +25,7 @@ export default function PosterView() {
   // 需要根据url参数，作为mdString 的默认值
   const searchParams = useSearchParams()
   const mdString = searchParams?.get('content') || defaultContentMd
-  const headerString = searchParams?.get('header') || 'AI Poster'
+  const headerString = searchParams?.get('header') || 'News'
   const footerString = searchParams?.get('footer') || 'Powered by AI Poster'
 
   return (
