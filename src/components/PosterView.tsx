@@ -30,6 +30,7 @@ export default function PosterView() {
 
   return (
     <div className="poster-content" style={{display: "inline-block"}}>
+      <span>asd发售的客服了解</span>
           {/* Preview */}
             <Md2Poster theme="SpringGradientWave" >
               <Md2PosterHeader  className="flex justify-center items-center px-4 font-medium text-lg">
