@@ -15,7 +15,7 @@ export default async function handler(
   }
 
   try {
-    const { markdown, header, footer } = req.body;
+    const { markdown, header = "", footer = "" } = req.body;
 
     // 启动浏览器
     // const browser = await puppeteer.launch({ headless: true });
@@ -120,16 +120,15 @@ export default async function handler(
     }
 
     // 直接获取 base64 格式的截图
-    // const base64Image = await page.screenshot({
-    //   clip: {
-    //     x: box.x,
-    //     y: box.y,
-    //     width: box.width,
-    //     height: box.height,
-    //   },
-    //   encoding: "base64",
-    // });
-    const base64Image = "";
+    const base64Image = await page.screenshot({
+      clip: {
+        x: box.x,
+        y: box.y,
+        width: box.width,
+        height: box.height,
+      },
+      encoding: "base64",
+    });
 
     await browser.close();
 
