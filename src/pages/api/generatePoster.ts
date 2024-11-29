@@ -31,9 +31,10 @@ export default async function handler(
         "--disable-web-security",
         "--no-sandbox",
         "--disable-setuid-sandbox",
-        "--font-render-hinting=none",
+        // "--font-render-hinting=none",
         "--force-color-profile=srgb",
         "--allow-file-access-from-files",
+        "--font-render-hinting medium"
       ],
       defaultViewport: chromium.defaultViewport,
       executablePath:
