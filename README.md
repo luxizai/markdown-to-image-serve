@@ -47,6 +47,30 @@ Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务�
 
 2. 部署完成后，你将获得一个可用的 API 地址，例如：`https://your-project.vercel.app`
 
+### Docker 部署
+
+1. 使用 Docker Compose 部署（推荐）
+
+```bash
+# 启动服务
+docker-compose up -d
+
+# 查看日志
+docker-compose logs -f
+```
+
+2. 使用 Docker 直接部署
+
+```bash
+# 构建镜像
+docker build -t markdown-to-image-serve .
+
+# 运行容器
+docker run -p 3000:3000 markdown-to-image-serve
+```
+
+访问 [http://localhost:3000](http://localhost:3000) 即可使用服务。
+
 ## ✨ 特性
 
 - 🎯 **Markdown 渲染** - 完整支持 Markdown 语法
@@ -169,6 +193,7 @@ node api_buffer_2_image.js
 ## 🛠 开发计划
 
 - [x] 支持Vercel一键部署
+- [x] 支持Docker部署
 - [ ] 优化图片加载性能
 - [ ] 添加图片压缩选项
 - [ ] 支持批量生成功能

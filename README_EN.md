@@ -22,7 +22,7 @@ Markdown To Image Serve is an out-of-the-box Markdown to Image API service. You 
 - 🚀 **One-Click Deploy** - Deploy on Vercel with one click, no server required
 - 🔄 **API Integration** - Simple and easy-to-use RESTful API interfaces
 - 🎨 **Custom Styling** - Support for custom headers, footers, and style templates
-- ���� **Responsive Design** - Adaptive image output for different sizes
+- �������� **Responsive Design** - Adaptive image output for different sizes
 
 ## 🌐 Quick Access
 
@@ -46,6 +46,30 @@ There are two ways to use Markdown To Image Serve:
    [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/markdown-to-image-serve)
 
 2. After deployment, you'll get an API endpoint, e.g.: `https://your-project.vercel.app`
+
+### Docker Deployment
+
+1. Deploy with Docker Compose (Recommended)
+
+```bash
+# Start service
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+2. Deploy with Docker directly
+
+```bash
+# Build image
+docker build -t markdown-to-image-serve .
+
+# Run container
+docker run -p 3000:3000 markdown-to-image-serve
+```
+
+Visit [http://localhost:3000](http://localhost:3000) to use the service.
 
 ## ✨ Features
 
@@ -168,6 +192,7 @@ node api_buffer_2_image.js
 ## 🛠 Development Plans
 
 - [x] Support Vercel one-click deployment
+- [x] Support Docker deployment
 - [ ] Optimize image loading performance
 - [ ] Add image compression options
 - [ ] Support batch generation
