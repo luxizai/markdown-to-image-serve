@@ -1,29 +1,60 @@
-# Markdown To Poster
+# Markdown To Image Serve
 
-This React component renders Markdown as visually appealing social media images. The project also includes a built-in web editor that can be used as an online Markdown-to-poster editor with a simple one-click deployment.
+一个将 Markdown 内容转换为精美图片的服务，提供开箱即用的 API 接口，支持 Vercel 快速部署和二次开发。
 
-- [NPM:markdown-to-poster](https://www.npmjs.com/package/markdown-to-poster)
+- [在线服务](https://markdown-to-image-serve.jcommon.top)
+- [GitHub 仓库](https://github.com/wxingheng/markdown-to-image-serve)
 
-⭐ [Click on Star and Watch to stay updated with our latest developments.](https://github.com/wxingheng/markdown-to-image-serve)
+⭐ [点击 Star 和 Watch 来获取最新动态](https://github.com/wxingheng/markdown-to-image-serve)
 
-## Features
+## ✨ 核心特性
 
-- [x] Render Markdown as poster images optimized for social sharing
-- [x] One built-in templates with support for custom templates
-- [x] Customizable themes with 9 pre-built options
-- [x] Copy output as an image
-- [x] One-click deployment to platforms like Vercel
-- [x] Integrated image CORS proxy for easy insertion of online images into posters
-- [ ] Copy output as HTML code for pasting into emails and editors
-- [ ] More built-in templates
+- 🎯 **Markdown 渲染** - 完整支持 Markdown 语法
+- 🔄 **图片处理** - 支持外部图片引用和优化
+- 🎨 **自定义模板** - 可配的页眉页脚和样式
+- ⚡️ **高性能** - 基于 Puppeteer 的高效渲染
+- 📦 **简单集成** - 提供简单的 API 调用方式
+- 🚀 **一键部署** - 支持 Vercel 一键部署，无需自建服务器
 
-## Getting Started
+## 快速开始
 
-There are two ways to use markdown-to-poster:
+使用 Markdown To Image Serve 有两种方式：
 
-1. Integration: markdown-to-poster is exported as a React component that can be seamlessly integrated into your projects.
-2. Using Web Editor: The example path includes a web editor that can be deployed and used as an online editor.
+1. **API 调用**：通过 RESTful API 接口集成到您的项目中
+2. **在线使用**：访问我们的[在线服务](https://markdown-to-image-serve.jcommon.top)直接使用
 
-   [Read More >>](https://github.com/wxingheng/markdown-to-image-serve)
+## 🚀 最佳实践
 
-⭐ [Click on Star and Watch to stay updated with our latest developments.](https://github.com/wxingheng/markdown-to-image-serve)
+### 示例代码运行
+1. 进入示例目录：
+```bash
+cd example
+```
+
+2. 运行示例脚本：
+```bash
+node api_buffer_2_image.js
+```
+
+### API 示例
+
+```bash
+curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
+--header 'Content-Type: application/json' \
+--data '{
+    "markdown": "# 标题",
+    "header": "页眉文本",
+    "footer": "页脚文本"
+}'
+```
+
+[查看完整文档 >>](https://github.com/wxingheng/markdown-to-image-serve)
+
+## 开发计划
+
+- [ ] 优化图片加载性能
+- [ ] 添加图片压缩选项
+- [ ] 实现模板在线预览
+- [ ] 支持批量生成功能
+
+⭐ [如果这个项目对你有帮助，欢迎 star 支持！](https://github.com/wxingheng/markdown-to-image-serve)

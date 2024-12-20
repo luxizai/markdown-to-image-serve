@@ -1,95 +1,169 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+# Markdown To Image Serve
 
-First, run the development server:
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
+[![Node Version](https://img.shields.io/node/v/next.svg)](https://nodejs.org)
+[![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/your-username/markdown-to-image-serve/issues)
+
+<h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Vercel 一键部署和 API 调用</h4>
+
+<p>一个将 Markdown 内容转换为精美图片的服务，提供开箱即用的 API 接口，支持 Vercel 快速部署和二次开发</p>
+
+简体中文 | [English](./README_EN.md)
+
+</div>
+
+## 🎯 项目简介
+
+Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务。你可以：
+
+- 🚀 **一键部署** - 支持 Vercel 一键部署，无需自建服务器
+- 🔄 **API 集成** - 提供简单易用的 RESTful API 接口
+- 🎨 **自定义样式** - 支持自定义页眉页脚和样式模板
+- 📱 **响应式设计** - 自适应不同尺寸的图片输出
+
+## ⚡️ 快速部署
+
+### Vercel 部署
+
+1. 点击下方按钮一键部署到 Vercel
+   
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/markdown-to-image-serve)
+
+2. 部署完成后，你将获得一个可用的 API 地址，例如：`https://your-project.vercel.app`
+
+## ✨ 特性
+
+- 🎯 **Markdown 渲染** - 完整支持 Markdown 语法
+- 🔄 **图片处理** - 支持外部图片引用和优化
+- 🎨 **自定义模板** - 可配的页眉页脚和样式
+- ⚡️ **高性能** - 基于 Puppeteer 的高效渲染
+- 📦 **简单集成** - 提供简单的 API 调用方式
+
+## 📦 快速开始
+
+### 本地开发
 
 ```bash
+# 安装依赖
+npm install
+# 或
+yarn install
+# 或
+pnpm install
+
+# 启动开发服务器
 npm run dev
-# or
+# 或
 yarn dev
-# or
+# 或
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 [http://localhost:3000](http://localhost:3000) 查看结果。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### API 使用
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### 生成海报
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-<!-- 使用 puppeteer 生成海报 -->
-POST /api/generatePoster 
-
-``` bash
-curl --location 'http://127.0.0.1:3000/api/generatePoster' \
+```bash
+curl --location 'http://localhost:3000/api/generatePoster' \
 --header 'Content-Type: application/json' \
 --data '{
-    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440) ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)",
-    "header": "header_text",
-    "footer": "footer_text"
+    "markdown": "# 标题",
+    "header": "页眉文本",
+    "footer": "页脚文本"
 }'
 ```
 
+#### 生成图片
 
-
-```
-curl --location 'http://127.0.0.1:3000/api/generatePoster' \
+```bash
+curl --location 'http://localhost:3000/api/generatePosterImage' \
 --header 'Content-Type: application/json' \
 --data '{
-    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
+    "markdown": "# 标题"
 }'
 ```
 
-```
-curl --location 'http://127.0.0.1:3000/api/generatePosterImage' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
-}'
-```
+## 📚 API 文档
 
+### POST /api/generatePoster
 
-```
-curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
-}'
-```
+生成包含页眉页脚的海报。
 
+**请求参数：**
 
-```
-curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePosterImage' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
-}'
+```json
+{
+    "markdown": "Markdown 内容",
+    "header": "页眉文本（可选）",
+    "footer": "页脚文本（可选）"
+}
 ```
 
+### POST /api/generatePosterImage
 
-### todo
-- 实现海报生成 API 接口
-- 实现 vercel 部署
-- 添加海报模板配置功能
-- 优化图片加载性能
-- 添加错误处理和日志记录
-- 实现海报预览功能
-- 添加用户自定义样式选项
+生成纯图片格式的海报。
+
+**请求参数：**
+
+```json
+{
+    "markdown": "Markdown 内容"
+}
+```
+
+## 🚀 最佳实践
+
+### 示例代码运行
+1. 进入示例目录：
+```bash
+cd example
+```
+
+2. 运行示例脚本：
+```bash
+node api_buffer_2_image.js
+```
+
+### 使用建议
+- 建议使用 Buffer 方式处理图片数据以获得更好的性能
+- 可以参考 `example` 目录下的示例代码进行集成
+- 推荐使用异步方式调用 API，避免阻塞主线程
+
+## 🛠 开发计划
+
+- [ ] 优化图片加载性能
+- [ ] 添加图片压缩选项
+- [ ] 实现模板在线预览
+- [ ] 支持批量生成功能
+
+## 🤝 贡献指南
+
+欢迎提交 Pull Request 或 Issue！
+
+1. Fork 本仓库
+2. 创建特性分支：`git checkout -b feature/AmazingFeature`
+3. 提交改动：`git commit -m 'Add some AmazingFeature'`
+4. 推送分支：`git push origin feature/AmazingFeature`
+5. 提交 Pull Request
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+
+## 致谢
+
+本项目基于 [markdown-to-image](https://github.com/gcui-art/markdown-to-image) 开发,感谢原作者的开源贡献。markdown-to-image 是一个优秀的 React 组件,可以将 Markdown 渲染成精美的海报图片。
+
+## ⭐️ Star 历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=wxingheng/markdown-to-image-serve&type=Date)](https://star-history.com/#wxingheng/markdown-to-image-serve&Date)
+
+---
+
+如果这个项目对你有帮助，欢迎 star 支持！ ⭐️
+

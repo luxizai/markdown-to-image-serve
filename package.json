@@ -1,7 +1,10 @@
 {
   "name": "markdown-to-image-serve",
-  "author": "wxingheng",
-  "description": "markdown to image serve",
+  "author": {
+    "name": "wxingheng",
+    "email": "wxingheng@outlook.com"
+  },
+  "description": "A service that converts Markdown content to beautiful images with API support, offering customizable themes and layouts",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -24,6 +27,8 @@
     "@types/mdx": "^2.0.13",
     "@uiw/react-md-editor": "^4.0.4",
     "@vercel/analytics": "^1.2.2",
+    "axios": "^1.7.9",
+    "buffer": "^6.0.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.378.0",
