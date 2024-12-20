@@ -48,12 +48,13 @@ export default async function handler(
         // "--allow-file-access-from-files",
       ],
       defaultViewport: chromium.defaultViewport,
-      executablePath:
-        process.env.NODE_ENV === "production"
-          ? await chromium.executablePath(
-              `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
-            )
-          : process.env.CHROME_PATH,
+      executablePath: process.env.CHROME_PATH,
+      // executablePath:
+      //   process.env.NODE_ENV === "production"
+      //     ? await chromium.executablePath(
+      //         `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
+      //       )
+      //     : process.env.CHROME_PATH,
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
       font: await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf')),
