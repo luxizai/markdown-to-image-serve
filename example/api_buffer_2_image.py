@@ -25,7 +25,7 @@ def convert_markdown_to_image(markdown_content):
     Returns:
         dict: 图像的 Buffer 数据字典
     """
-    api_url = "http://localhost:3000/api/generatePoster"
+    api_url = "https://markdown-to-image-serve.jcommon.top/api/generatePoster"
     json_data = {"markdown": markdown_content}
     response = requests.post(api_url, json=json_data)
     

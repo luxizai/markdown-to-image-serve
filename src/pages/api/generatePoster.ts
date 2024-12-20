@@ -1,7 +1,7 @@
 /*
  * @Author: wxingheng
  * @Date: 2024-11-28 14:20:13
- * @LastEditTime: 2024-12-20 11:00:47
+ * @LastEditTime: 2024-12-20 13:23:10
  * @LastEditors: wxingheng
  * @Description: 生成海报; 返回 base64 格式的海报
  * @FilePath: /markdown-to-image-serve/src/pages/api/generatePoster.ts
@@ -26,15 +26,14 @@ export default async function handler(
   try {
     const { markdown, header = "", footer = "" } = req.body;
 
-    // 启动浏览器
-    // const browser = await puppeteer.launch({ headless: true });
-    // const browser = await puppeteer.launch({
-    //   headless: true,
-    //   executablePath: process.env.CHROME_PATH || '/opt/bin/chromium',
-    //   args: ['--no-sandbox', '--disable-setuid-sandbox']
-    // });
-
-    await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf'));
+    // 修改字体加载部分
+    try {
+      await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf'));
+    } catch (error: any) {
+      if (error.code !== 'EEXIST') {
+        throw error;
+      }
+    }
 
     const browser = await puppeteer.launch({
       args: [
@@ -65,7 +64,6 @@ export default async function handler(
           : process.env.CHROME_PATH,
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
-      font: await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf')),
     });
 
     const page = await browser.newPage();
@@ -125,6 +123,7 @@ export default async function handler(
       footer
     )}`;
     const fullUrl = `${baseUrl}${url}`;
+    console.log("fullUrl==========>", fullUrl);
 
     // 设置页面编码和等待时间
     await page.goto(fullUrl, {
