@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-11-28 17:51:19
  * @LastEditors: wxingheng
  * @Description: 
- * @FilePath: /markdown-to-image-plus/README_CN.md
+ * @FilePath: /markdown-to-image-serve/README_CN.md
 -->
 # Markdown To Poster
 

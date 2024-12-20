@@ -1,5 +1,7 @@
 {
-  "name": "example",
+  "name": "markdown-to-image-serve",
+  "author": "wxingheng",
+  "description": "markdown to image serve",
   "version": "0.1.0",
   "private": true,
   "scripts": {

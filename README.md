@@ -68,15 +68,16 @@ curl --location 'http://127.0.0.1:3000/api/generatePosterImage' \
 
 
 ```
-curl --location 'https://markdown-to-image-plus-17pvaoywy-wxinghengs-projects.vercel.app/api/generatePoster' \
+curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
 --header 'Content-Type: application/json' \
 --data '{
     "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
 }'
 ```
 
+
 ```
-curl --location 'http://127.0.0.1:3000/api/generatePosterImage' \
+curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePosterImage' \
 --header 'Content-Type: application/json' \
 --data '{
     "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
@@ -86,6 +87,7 @@ curl --location 'http://127.0.0.1:3000/api/generatePosterImage' \
 
 ### todo
 - 实现海报生成 API 接口
+- 实现 vercel 部署
 - 添加海报模板配置功能
 - 优化图片加载性能
 - 添加错误处理和日志记录

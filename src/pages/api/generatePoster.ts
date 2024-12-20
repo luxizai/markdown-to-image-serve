@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-12-20 11:00:47
  * @LastEditors: wxingheng
  * @Description: 生成海报; 返回 base64 格式的海报
- * @FilePath: /markdown-to-image-plus/src/pages/api/generatePoster.ts
+ * @FilePath: /markdown-to-image-serve/src/pages/api/generatePoster.ts
  */
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";

@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-12-20 11:05:14
  * @LastEditors: wxingheng
  * @Description: 生成海报; 返回海报图片 url
- * @FilePath: /markdown-to-image-plus/src/pages/api/generatePosterImage.ts
+ * @FilePath: /markdown-to-image-serve/src/pages/api/generatePosterImage.ts
  */
 import { NextApiRequest, NextApiResponse } from "next";
 // import puppeteer from "puppeteer";
