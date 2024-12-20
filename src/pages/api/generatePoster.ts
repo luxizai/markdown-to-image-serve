@@ -1,3 +1,11 @@
+/*
+ * @Author: wxingheng
+ * @Date: 2024-11-28 14:20:13
+ * @LastEditTime: 2024-12-20 11:00:47
+ * @LastEditors: wxingheng
+ * @Description: 生成海报; 返回 base64 格式的海报
+ * @FilePath: /markdown-to-image-plus/src/pages/api/generatePoster.ts
+ */
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 const chromium = require("@sparticuz/chromium-min");
@@ -48,13 +56,13 @@ export default async function handler(
         // "--allow-file-access-from-files",
       ],
       defaultViewport: chromium.defaultViewport,
-      executablePath: process.env.CHROME_PATH,
-      // executablePath:
-      //   process.env.NODE_ENV === "production"
-      //     ? await chromium.executablePath(
-      //         `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
-      //       )
-      //     : process.env.CHROME_PATH,
+      // executablePath: process.env.CHROME_PATH,
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? await chromium.executablePath(
+              `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
+            )
+          : process.env.CHROME_PATH,
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
       font: await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf')),

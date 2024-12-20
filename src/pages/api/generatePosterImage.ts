@@ -1,10 +1,10 @@
 /*
  * @Author: wxingheng
  * @Date: 2024-11-28 14:20:13
- * @LastEditTime: 2024-11-28 14:20:14
+ * @LastEditTime: 2024-12-20 11:05:14
  * @LastEditors: wxingheng
- * @Description: 
- * @FilePath: /markdown-to-image-plus/src/pages/api/generatePoster copy.ts
+ * @Description: 生成海报; 返回海报图片 url
+ * @FilePath: /markdown-to-image-plus/src/pages/api/generatePosterImage.ts
  */
 import { NextApiRequest, NextApiResponse } from "next";
 // import puppeteer from "puppeteer";

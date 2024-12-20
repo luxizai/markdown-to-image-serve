@@ -59,7 +59,24 @@ curl --location 'http://127.0.0.1:3000/api/generatePoster' \
 ```
 
 ```
-curl --location 'http://127.0.0.1:3000/api/generatePoster-png' \
+curl --location 'http://127.0.0.1:3000/api/generatePosterImage' \
+--header 'Content-Type: application/json' \
+--data '{
+    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
+}'
+```
+
+
+```
+curl --location 'https://markdown-to-image-plus-17pvaoywy-wxinghengs-projects.vercel.app/api/generatePoster' \
+--header 'Content-Type: application/json' \
+--data '{
+    "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
+}'
+```
+
+```
+curl --location 'http://127.0.0.1:3000/api/generatePosterImage' \
 --header 'Content-Type: application/json' \
 --data '{
     "markdown": "# AI Morning News - April 29th ![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)"
