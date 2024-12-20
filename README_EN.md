@@ -7,9 +7,9 @@
 [![Node Version](https://img.shields.io/node/v/next.svg)](https://nodejs.org)
 [![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/your-username/markdown-to-image-serve/issues)
 
-<h4>A Markdown to Image service based on Next.js and Puppeteer, supporting Vercel deployment and API integration</h4>
+<h4>A Markdown to Image Service based on Next.js and Puppeteer, supporting Vercel deployment and API integration</h4>
 
-<p>A service that converts Markdown content into beautiful images, providing out-of-the-box API interfaces, supporting quick Vercel deployment and secondary development</p>
+<p>A service that converts Markdown content into beautiful images, providing out-of-the-box API interfaces, supporting quick deployment on Vercel and secondary development</p>
 
 [简体中文](./README.md) | English
 
@@ -19,20 +19,33 @@
 
 Markdown To Image Serve is an out-of-the-box Markdown to Image API service. You can:
 
-- 🚀 **One-Click Deploy** - Deploy to Vercel with one click, no server setup needed
+- 🚀 **One-Click Deploy** - Deploy on Vercel with one click, no server required
 - 🔄 **API Integration** - Simple and easy-to-use RESTful API interfaces
 - 🎨 **Custom Styling** - Support for custom headers, footers, and style templates
-- 📱 **Responsive Design** - Adaptive image output for different sizes
+- ���� **Responsive Design** - Adaptive image output for different sizes
 
-## ⚡️ Quick Deploy
+## 🌐 Quick Access
+
+### Online Service
+
+- 🔗 [Online Service](https://markdown-to-image-serve.jcommon.top) - Direct access
+- 📦 [GitHub Repository](https://github.com/wxingheng/markdown-to-image-serve) - Get source code
+
+There are two ways to use Markdown To Image Serve:
+1. **API Integration**: Integrate into your project through RESTful API interfaces
+2. **Online Usage**: Visit our [online service](https://markdown-to-image-serve.jcommon.top) directly
+
+⭐ [Click Star and Watch to get latest updates](https://github.com/wxingheng/markdown-to-image-serve)
+
+## ⚡️ Quick Deployment
 
 ### Vercel Deployment
 
-1. Click the button below to deploy to Vercel instantly
+1. Click the button below to deploy to Vercel
    
    [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/markdown-to-image-serve)
 
-2. After deployment, you'll get a usable API address, e.g.: `https://your-project.vercel.app`
+2. After deployment, you'll get an API endpoint, e.g.: `https://your-project.vercel.app`
 
 ## ✨ Features
 
@@ -42,7 +55,7 @@ Markdown To Image Serve is an out-of-the-box Markdown to Image API service. You 
 - ⚡️ **High Performance** - Efficient rendering based on Puppeteer
 - 📦 **Simple Integration** - Easy API implementation
 
-## 📦 Quick Start
+## 📦 Getting Started
 
 ### Local Development
 
@@ -69,6 +82,16 @@ Visit [http://localhost:3000](http://localhost:3000) to see the result.
 #### Generate Poster
 
 ```bash
+curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
+--header 'Content-Type: application/json' \
+--data '{
+    "markdown": "# Title",
+    "header": "Header Text",
+    "footer": "Footer Text"
+}'
+```
+
+```bash
 curl --location 'http://localhost:3000/api/generatePoster' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -79,6 +102,14 @@ curl --location 'http://localhost:3000/api/generatePoster' \
 ```
 
 #### Generate Image
+
+```bash
+curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePosterImage' \
+--header 'Content-Type: application/json' \
+--data '{
+    "markdown": "# Title"
+}'
+```
 
 ```bash
 curl --location 'http://localhost:3000/api/generatePosterImage' \
@@ -119,12 +150,12 @@ Generate a poster in pure image format.
 ## 🚀 Best Practices
 
 ### Running Example Code
-1. Enter the example directory:
+1. Enter example directory:
 ```bash
 cd example
 ```
 
-2. Run the example script:
+2. Run example script:
 ```bash
 node api_buffer_2_image.js
 ```
@@ -136,20 +167,21 @@ node api_buffer_2_image.js
 
 ## 🛠 Development Plans
 
+- [x] Support Vercel one-click deployment
 - [ ] Optimize image loading performance
 - [ ] Add image compression options
-- [ ] Implement online template preview
-- [ ] Support batch generation functionality
+- [ ] Support batch generation
+- [ ] Fix Chinese character encoding issues
 
 ## 🤝 Contributing
 
-Pull requests and Issues are welcome!
+Pull requests and issues are welcome!
 
-1. Fork this repository
-2. Create your feature branch: `git checkout -b feature/AmazingFeature`
-3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
-4. Push to the branch: `git push origin feature/AmazingFeature`
-5. Submit a Pull Request
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit changes: `git commit -m 'Add some AmazingFeature'`
+4. Push branch: `git push origin feature/AmazingFeature`
+5. Submit Pull Request
 
 ## 📄 License
 
@@ -157,7 +189,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-This project is developed based on [markdown-to-image](https://github.com/gcui-art/markdown-to-image). Thanks to the original author for the open-source contribution. markdown-to-image is an excellent React component that renders Markdown into beautiful poster images.
+This project is based on [markdown-to-image](https://github.com/gcui-art/markdown-to-image). Thanks to the original author for the open source contribution. markdown-to-image is an excellent React component that renders Markdown into beautiful poster images.
 
 ## ⭐️ Star History
 
@@ -165,4 +197,4 @@ This project is developed based on [markdown-to-image](https://github.com/gcui-a
 
 ---
 
-If this project helps you, please star it! ⭐️ 
+If this project helps you, please star to support! ⭐️ 
