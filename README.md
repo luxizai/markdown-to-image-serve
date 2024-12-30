@@ -217,11 +217,6 @@ node api_buffer_2_image.js
 
 本项目基于 [markdown-to-image](https://github.com/gcui-art/markdown-to-image) 开发,感谢原作者的开源贡献。markdown-to-image 是一个优秀的 React 组件,可以将 Markdown 渲染成精美的海报图片。
 
-## ⭐️ Star 历史
-
-[![Star History Chart](https://api.star-history.com/svg?repos=wxingheng/markdown-to-image-serve&type=Date)](https://star-history.com/#wxingheng/markdown-to-image-serve&Date)
-
----
 
 如果这个项目对你有帮助，欢迎 star 支持！ ⭐️
 
