@@ -216,10 +216,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 This project is based on [markdown-to-image](https://github.com/gcui-art/markdown-to-image). Thanks to the original author for the open source contribution. markdown-to-image is an excellent React component that renders Markdown into beautiful poster images.
 
-## ⭐️ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=wxingheng/markdown-to-image-serve&type=Date)](https://star-history.com/#wxingheng/markdown-to-image-serve&Date)
-
 ---
 
 If this project helps you, please star to support! ⭐️ 
