@@ -1,16 +1,18 @@
 # 使用官方 Node.js 镜像作为基础镜像
-FROM node:18-alpine
+FROM node:20-alpine
 
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package.json 和 package-lock.json
+# 首先复制依赖相关文件
 COPY package*.json ./
+COPY .env* ./
 
-# 安装依赖
-RUN npm install
+# 安装依赖并构建
+RUN npm install && \
+    npm run build
 
-# 复制源代码
+# 然后再复制其他源代码
 COPY . .
 
 # 暴露端口

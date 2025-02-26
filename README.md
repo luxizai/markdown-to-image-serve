@@ -99,6 +99,28 @@ yarn dev
 pnpm dev
 ```
 
+#### 配置 ./.env.local
+
+```bash
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+CHROME_PATH=/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+```
+如何找到 Chrome 路径？
+# macOS
+which google-chrome
+# 或者
+ls -l /Applications/Google\ Chrome.app/Contents/MacOS/
+
+# Linux
+which google-chrome
+# 或者
+which chromium
+
+# Windows（PowerShell）
+Get-Command chrome | Select-Object -ExpandProperty Definition
+# 或者在 Chrome 地址栏输入：
+# chrome://version/ 然后查看 "可执行文件路径"
+
 访问 [http://localhost:3000](http://localhost:3000) 查看结果。
 
 ### API 使用

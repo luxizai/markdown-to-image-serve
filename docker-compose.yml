@@ -5,8 +5,11 @@ services:
     build: .
     ports:
       - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+      - CHROME_PATH=/usr/bin/chromium-browser
     volumes:
       - .:/app
       - /app/node_modules
-    environment:
-      - NODE_ENV=development 
+      - /app/.next 
