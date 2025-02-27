@@ -23,207 +23,148 @@ Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务�
 - 🔄 **API 集成** - 提供简单易用的 RESTful API 接口
 - 🎨 **自定义样式** - 支持自定义页眉页脚和样式模板
 - 📱 **响应式设计** - 自适应不同尺寸的图片输出
+- 🌐 **多平台支持** - 支持 Docker、Vercel 等多种部署方式
+- 🔒 **安全可靠** - 支持图片防盗链和访问控制
 
-## 🌐 快速使用
+## 🌟 核心功能
+
+- 📝 将 Markdown 文本转换为精美图片
+- 🎨 支持自定义主题和样式
+- 📊 支持代码高亮和表格渲染
+- 🖼️ 支持自定义页眉页脚
+- 📱 自适应不同设备尺寸
+- 🔄 支持批量转换功能
+- 📦 提供完整的 API 接口
+
+## �� 快速使用
 
 ### 在线服务
 
-- 🔗 [在线服务](https://markdown-to-image-serve.jcommon.top) - 直接访问使用
-- 📦 [GitHub 仓库](https://github.com/wxingheng/markdown-to-image-serve) - 获取源码
-
-使用 Markdown To Image Serve 有两种方式：
-1. **API 调用**：通过 RESTful API 接口集成到您的项目中
-2. **在线使用**：访问我们的[在线服务](https://markdown-to-image-serve.jcommon.top)直接使用
-
-⭐ [点击 Star 和 Watch 来获取最新动态](https://github.com/wxingheng/markdown-to-image-serve)
-
-## ⚡️ 快速部署
-
-### Vercel 部署
-
-1. 点击下方按钮一键部署到 Vercel
-   
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/markdown-to-image-serve)
-
-2. 部署完成后，你将获得一个可用的 API 地址，例如：`https://your-project.vercel.app`
-
-### Docker 部署
-
-1. 使用 Docker Compose 部署（推荐）
-
-```bash
-# 启动服务
-docker-compose up -d
-
-# 查看日志
-docker-compose logs -f
-```
-
-2. 使用 Docker 直接部署
-
-```bash
-# 构建镜像
-docker build -t markdown-to-image-serve .
-
-# 运行容器
-docker run -p 3000:3000 markdown-to-image-serve
-```
-
-访问 [http://localhost:3000](http://localhost:3000) 即可使用服务。
-
-## ✨ 特性
-
-- 🎯 **Markdown 渲染** - 完整支持 Markdown 语法
-- 🔄 **图片处理** - 支持外部图片引用和优化
-- 🎨 **自定义模板** - 可配的页眉页脚和样式
-- ⚡️ **高性能** - 基于 Puppeteer 的高效渲染
-- 📦 **简单集成** - 提供简单的 API 调用方式
-
-## 📦 快速开始
+访问我们的在线服务，立即体验：
+- 🌐 [在线服务](https://markdown-to-image-serve.jcommon.top)
+- 📦 [GitHub 仓库](https://github.com/wxingheng/markdown-to-image-serve)
 
 ### 本地开发
 
+1. 克隆项目
 ```bash
-# 安装依赖
-npm install
-# 或
-yarn install
-# 或
-pnpm install
+git clone https://github.com/your-username/markdown-to-image-serve.git
+cd markdown-to-image-serve
+```
 
-# 启动开发服务器
-npm run dev
-# 或
-yarn dev
-# 或
+2. 安装依赖
+```bash
+pnpm install
+```
+
+3. 配置环境变量
+创建 `.env.local` 文件：
+```bash
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+CHROME_PATH=/path/to/your/chrome  # Chrome 浏览器路径
+```
+
+4. 启动开发服务器
+```bash
 pnpm dev
 ```
 
-#### 配置 ./.env.local
+### Chrome 路径配置指南
 
+根据不同操作系统，Chrome 路径获取方式如下：
+
+**macOS**:
 ```bash
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-CHROME_PATH=/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+ls -l /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 ```
-如何找到 Chrome 路径？
-# macOS
-which google-chrome
-# 或者
-ls -l /Applications/Google\ Chrome.app/Contents/MacOS/
 
-# Linux
+**Linux**:
+```bash
 which google-chrome
-# 或者
+# 或
 which chromium
+```
 
-# Windows（PowerShell）
+**Windows**:
+```powershell
 Get-Command chrome | Select-Object -ExpandProperty Definition
-# 或者在 Chrome 地址栏输入：
-# chrome://version/ 然后查看 "可执行文件路径"
-
-访问 [http://localhost:3000](http://localhost:3000) 查看结果。
-
-### API 使用
-
-#### 生成海报
-
-```bash
-curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# 标题",
-    "header": "页眉文本",
-    "footer": "页脚文本"
-}'
+# 或访问 chrome://version/ 查看"可执行文件路径"
 ```
 
+## 🚀 部署指南
+
+### Vercel 部署
+
+1. 点击下方按钮一键部署
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/markdown-to-image-serve)
+
+2. 配置环境变量
+   - `CHROME_PATH`: Chrome 浏览器路径
+   - `NEXT_PUBLIC_BASE_URL`: 部署后的域名
+
+### Docker 部署
+
+使用 Docker Compose（推荐）:
 ```bash
-curl --location 'http://localhost:3000/api/generatePoster' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# 标题",
-    "header": "页眉文本",
-    "footer": "页脚文本"
-}'
+docker-compose up -d
 ```
 
-#### 生成图片
-
-
+或使用 Docker 直接部署:
 ```bash
-curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePosterImage' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# 标题"
-}'
-```
-
-```bash
-curl --location 'http://localhost:3000/api/generatePosterImage' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# 标题"
-}'
+docker build -t markdown-to-image-serve .
+docker run -p 3000:3000 -e CHROME_PATH=/usr/bin/google-chrome markdown-to-image-serve
 ```
 
 ## 📚 API 文档
 
-### POST /api/generatePoster
-
-生成包含页眉页脚的海报。
+### 生成海报 (POST /api/generatePoster)
 
 **请求参数：**
-
-```json
+```typescript
 {
-    "markdown": "Markdown 内容",
-    "header": "页眉文本（可选）",
-    "footer": "页脚文本（可选）"
+  markdown: string;       // Markdown 内容
+  header?: string;       // 可选：页眉文本
+  footer?: string;       // 可选：页脚文本
+  theme?: 'light' | 'dark'; // 可选：主题
+  width?: number;        // 可选：图片宽度
+  height?: number;       // 可选：图片高度
 }
 ```
 
-### POST /api/generatePosterImage
+**示例请求：**
+```bash
+curl -X POST 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "markdown": "# Hello World\n\nThis is a test.",
+    "header": "My Header",
+    "footer": "My Footer"
+  }'
+```
 
-生成纯图片格式的海报。
+### 生成图片 (POST /api/generatePosterImage)
 
 **请求参数：**
-
-```json
+```typescript
 {
-    "markdown": "Markdown 内容"
+  markdown: string;      // Markdown 内容
+  theme?: string;       // 可选：主题
+  width?: number;       // 可选：图片宽度
 }
 ```
-
-## 🚀 最佳实践
-
-### 示例代码运行
-1. 进入示例目录：
-```bash
-cd example
-```
-
-2. 运行示例脚本：
-```bash
-node api_buffer_2_image.js
-```
-
-### 使用建议
-- 建议使用 Buffer 方式处理图片数据以获得更好的性能
-- 可以参考 `example` 目录下的示例代码进行集成
-- 推荐使用异步方式调用 API，避免阻塞主线程
 
 ## 🛠 开发计划
 
-- [x] 支持Vercel一键部署
-- [x] 支持Docker部署
-- [ ] 优化图片加载性能
-- [ ] 添加图片压缩选项
-- [ ] 支持批量生成功能
-- [ ] 海报中文乱码问题
+- [x] Vercel 一键部署支持
+- [x] Docker 部署支持
+- [x] 自定义主题功能
+- [ ] 图片压缩优化
+- [ ] 批量生成功能
+- [ ] 中文字体优化
+- [ ] 自定义模板系统
+- [ ] API 访问控制
 
 ## 🤝 贡献指南
-
-欢迎提交 Pull Request 或 Issue！
 
 1. Fork 本仓库
 2. 创建特性分支：`git checkout -b feature/AmazingFeature`
@@ -237,8 +178,7 @@ node api_buffer_2_image.js
 
 ## 致谢
 
-本项目基于 [markdown-to-image](https://github.com/gcui-art/markdown-to-image) 开发,感谢原作者的开源贡献。markdown-to-image 是一个优秀的 React 组件,可以将 Markdown 渲染成精美的海报图片。
-
+感谢 [markdown-to-image](https://github.com/gcui-art/markdown-to-image) 项目的启发。
 
 如果这个项目对你有帮助，欢迎 star 支持！ ⭐️
 
