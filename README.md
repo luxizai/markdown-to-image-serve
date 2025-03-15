@@ -58,7 +58,7 @@ pnpm install
 ```
 
 3. 配置环境变量
-创建 `.env.local` 文件：
+创建 `.env` 文件：
 ```bash
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 CHROME_PATH=/path/to/your/chrome  # Chrome 浏览器路径
@@ -91,17 +91,6 @@ Get-Command chrome | Select-Object -ExpandProperty Definition
 # 或访问 chrome://version/ 查看"可执行文件路径"
 ```
 
-## 🚀 部署指南
-
-### Vercel 部署
-
-1. 点击下方按钮一键部署
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/markdown-to-image-serve)
-
-2. 配置环境变量
-   - `CHROME_PATH`: Chrome 浏览器路径
-   - `NEXT_PUBLIC_BASE_URL`: 部署后的域名
-
 ### Docker 部署
 
 使用 Docker Compose（推荐）:
@@ -133,10 +122,10 @@ docker run -p 3000:3000 -e CHROME_PATH=/usr/bin/google-chrome markdown-to-image-
 
 **示例请求：**
 ```bash
-curl -X POST 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
+curl -X POST 'http://localhost:3000/api/generatePoster' \
   -H 'Content-Type: application/json' \
   -d '{
-    "markdown": "# Hello World\n\nThis is a test.",
+    "markdown": "# Hello World\n\nThis is a test. \n # 你好，世界!",
     "header": "My Header",
     "footer": "My Footer"
   }'

@@ -19,16 +19,17 @@ const Textarea: React.FC<TextareaHTMLAttributes<HTMLTextAreaElement>> = ({ onCha
   )
 }
 
-const defaultMd = `# AI Morning News - April 29th
-![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)
-1. **MetaElephant Company Releases Multi-Modal Large Model XVERSE-V**: Supports image input of any aspect ratio, performs well in multiple authoritative evaluations, and has been open-sourced.
-2. **Tongyi Qianwen Team Open-Sources Billion-Parameter Model Qwen1.5-110B**: Uses Transformer decoder architecture, supports multiple languages, and has an efficient attention mechanism.
-3. **Shengshu Technology and Tsinghua University Release Video Large Model Vidu**: Adopts a fusion architecture of Diffusion and Transformer, generates high-definition videos with one click, leading internationally.
-4. **Mutable AI Launches Auto Wiki v2**: Automatically converts code into Wikipedia-style articles, solving the problem of code documentation.
-5. **Google Builds New Data Center in the U.S.**: Plans to invest $3 billion to build a data center campus in Indiana, expand facilities in Virginia, and launch an artificial intelligence opportunity fund.
-6. **China Academy of Information and Communications Technology Releases Automobile Large Model Standard**: Aims to standardize and promote the intelligent development of the automotive industry.
-7. Kimi Chat Mobile App Update: Version 1.2.1 completely revamps the user interface, introduces a new light mode, and provides a comfortable and intuitive experience.
-  `
+const defaultMd = `# AI晨报 - 4月29日  
+
+![image](https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/artificial-intelligence--ai/960x0.jpg?format=jpg&width=1440)  
+
+1. **MetaElephant公司发布多模态大模型XVERSE-V**：支持任意长宽比的图像输入，在多项权威评测中表现优异，并已开源。  
+2. **通义千问团队开源百亿参数模型Qwen1.5-110B**：采用Transformer解码器架构，支持多种语言，并具备高效的注意力机制。  
+3. **生数科技与清华大学发布视频大模型Vidu**：采用扩散模型（Diffusion）与Transformer融合架构，一键生成高清视频，国际领先。  
+4. **Mutable AI推出Auto Wiki v2**：可自动将代码转换为类似维基百科的文档，解决代码文档化问题。  
+5. **谷歌在美国新建数据中心**：计划投资30亿美元，在印第安纳州建设数据中心园区，扩建弗吉尼亚州设施，并启动人工智能机会基金。  
+6. **中国信息通信研究院发布汽车大模型标准**：旨在规范和促进汽车行业的智能化发展。  
+7. **Kimi Chat移动端应用更新**：版本1.2.1全面改版用户界面，引入全新浅色模式，提供更舒适直观的体验。  `
 
 export default function Editor() {
   const [mdString, setMdString] = useState(defaultMd)
