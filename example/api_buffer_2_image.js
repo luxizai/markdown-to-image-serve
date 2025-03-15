@@ -18,7 +18,7 @@ async function readMarkdownFile(filePath) {
  * @returns {Promise<object>} 图像的 Buffer 数据字典
  */
 async function convertMarkdownToImage(markdownContent) {
-    const apiUrl = "https://markdown-to-image-serve.jcommon.top/api/generatePoster";
+    const apiUrl = "http://127.0.0.1:3000/api/generatePoster";
     const jsonData = { markdown: markdownContent };
     
     try {

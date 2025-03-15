@@ -1,15 +1,19 @@
-version: '3.8'
+version: '0.2'
 
 services:
   app:
     build:
       context: .
+    # Mac 平台
+    platform: linux/amd64
+    # x86 架构
+    # platform: linux/x86
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_BASE_URL=http://localhost:3000
-      - CHROME_PATH=/usr/bin/chromium-browser
+      - CHROME_PATH=/usr/bin/chromium
     volumes:
       - .:/app
       - /app/node_modules

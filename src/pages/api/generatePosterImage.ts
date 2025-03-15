@@ -1,7 +1,7 @@
 /*
  * @Author: wxingheng
  * @Date: 2024-11-28 14:20:13
- * @LastEditTime: 2025-02-26 18:19:27
+ * @LastEditTime: 2025-03-15 17:18:48
  * @LastEditors: wxingheng
  * @Description: 生成海报; 返回海报图片 url
  * @FilePath: /markdown-to-image-serve/src/pages/api/generatePosterImage.ts
@@ -31,14 +31,26 @@ export default async function handler(
     //   executablePath: process.env.CHROME_PATH || '/opt/bin/chromium',
     //   args: ['--no-sandbox', '--disable-setuid-sandbox']
     // });
+    console.log("===============>", process.env.NODE_ENV, process.env.CHROME_PATH)
+
+      // 修改字体加载部分
+      try {
+        await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf'));
+      } catch (error: any) {
+        if (error.code !== 'EEXIST') {
+          throw error;
+        }
+      }
+
     const browser = await puppeteer.launch({
       // args: [...chromium.args, '--hide-scrollbars', '--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox'],
       // 只有 production 环境才需要 args
       args: process.env.NODE_ENV === 'production' ? [...chromium.args, '--hide-scrollbars', '--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox'] : [],
       defaultViewport: chromium.defaultViewport,
-      executablePath: process.env.NODE_ENV === 'production' ? await chromium.executablePath(
-        `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
-      ) :  process.env.CHROME_PATH,
+      // executablePath: process.env.NODE_ENV === 'production' ? await chromium.executablePath(
+      //   `https://github.com/Sparticuz/chromium/releases/download/v123.0.1/chromium-v123.0.1-pack.tar`
+      // ) :  process.env.CHROME_PATH,
+      executablePath: process.env.CHROME_PATH,
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });

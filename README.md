@@ -19,7 +19,7 @@
 
 Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务。你可以：
 
-- 🚀 **一键部署** - 支持 Vercel 一键部署，无需自建服务器
+- 🚀 **一键部署** - 支持 Docker Compose 一键部署
 - 🔄 **API 集成** - 提供简单易用的 RESTful API 接口
 - 🎨 **自定义样式** - 支持自定义页眉页脚和样式模板
 - 📱 **响应式设计** - 自适应不同尺寸的图片输出
@@ -93,15 +93,19 @@ Get-Command chrome | Select-Object -ExpandProperty Definition
 
 ### Docker 部署
 
-使用 Docker Compose（推荐）:
+使用 Docker Compose（推荐 推荐 推荐）:
 ```bash
 docker-compose up -d
+```
+
+```
+docker compose build --no-cache 
 ```
 
 或使用 Docker 直接部署:
 ```bash
 docker build -t markdown-to-image-serve .
-docker run -p 3000:3000 -e CHROME_PATH=/usr/bin/google-chrome markdown-to-image-serve
+docker run -p 3000:3000 markdown-to-image-serve
 ```
 
 ## 📚 API 文档
@@ -144,12 +148,11 @@ curl -X POST 'http://localhost:3000/api/generatePoster' \
 
 ## 🛠 开发计划
 
-- [x] Vercel 一键部署支持
 - [x] Docker 部署支持
 - [x] 自定义主题功能
 - [ ] 图片压缩优化
 - [ ] 批量生成功能
-- [ ] 中文字体优化
+- [x] 中文字体优化
 - [ ] 自定义模板系统
 - [ ] API 访问控制
 
