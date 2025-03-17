@@ -7,9 +7,9 @@
 [![Node Version](https://img.shields.io/node/v/next.svg)](https://nodejs.org)
 [![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/your-username/markdown-to-image-serve/issues)
 
-<h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Vercel 一键部署和 API 调用</h4>
+<h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Docker 一键部署和 API 调用</h4>
 
-<p>一个将 Markdown 内容转换为精美图片的服务，提供开箱即用的 API 接口，支持 Vercel 快速部署和二次开发</p>
+<p>一个将 Markdown 内容转换为精美图片的服务，提供开箱即用的 API 接口，支持 Docker 快速部署和二次开发</p>
 
 简体中文 | [English](./README_EN.md)
 
@@ -23,7 +23,7 @@ Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务�
 - 🔄 **API 集成** - 提供简单易用的 RESTful API 接口
 - 🎨 **自定义样式** - 支持自定义页眉页脚和样式模板
 - 📱 **响应式设计** - 自适应不同尺寸的图片输出
-- 🌐 **多平台支持** - 支持 Docker、Vercel 等多种部署方式
+- 🌐 **多平台支持** - 支持 Docker 等多种部署方式
 - 🔒 **安全可靠** - 支持图片防盗链和访问控制
 
 ## 🌟 核心功能
