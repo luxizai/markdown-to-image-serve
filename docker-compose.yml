@@ -1,19 +1,19 @@
-version: '0.2'
+version: '0.1'
 
 services:
   app:
     build:
       context: .
-    # Mac 平台
+    # 指定平台 amd64 架构 （Mac Apple Silicon 平台）
     platform: linux/amd64
-    # x86 架构
+    # 指定平台 x86 架构 （Linux 平台, Windows 平台, Mac Intel 平台）
     # platform: linux/x86
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_BASE_URL=http://localhost:3000
-      - CHROME_PATH=/usr/bin/chromium
+      - CHROME_PATH=/usr/bin/google-chrome-unstable
     volumes:
       - .:/app
       - /app/node_modules

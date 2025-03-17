@@ -1,3 +1,4 @@
+# 使用网易云镜像
 FROM node:20-slim
 
 # 添加Google Chrome的密钥
@@ -18,6 +19,29 @@ RUN apt-get update \
         --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
+# Install necessary dependencies for Puppeteer and Chromium
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#   chromium \
+#   fonts-liberation \
+#   libasound2 \
+#   libatk-bridge2.0-0 \
+#   libatk1.0-0 \
+#   libcups2 \
+#   libdrm2 \
+#   libgbm1 \
+#   libglu1-mesa \
+#   libgtk-3-0 \
+#   libnspr4 \
+#   libnss3 \
+#   libu2f-udev \
+#   libx11-xcb1 \
+#   libxcomposite1 \
+#   libxdamage1 \
+#   libxrandr2 \
+#   libxshmfence1 \
+#   xdg-utils \
+#   && apt-get clean \
+#   && rm -rf /var/lib/apt/lists/*
 
 # 设置工作目录
 WORKDIR /app
@@ -37,9 +61,10 @@ RUN npm install && \
 # 暴露端口
 EXPOSE 3000
 
-# Puppeteer setup: Skip Chromium download and use the installed Chromium
+
+# Puppeteer setup: Skip Chromium download and use the installed Chrome
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-# ENV CHROME_PATH=/usr/bin/chromium
+ENV CHROME_PATH=/usr/bin/google-chrome-unstable
 # ENV NODE_ENV=production
 # ENV NEXT_PUBLIC_BASE_URL=http://localhost:3000
 

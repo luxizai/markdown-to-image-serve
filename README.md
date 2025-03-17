@@ -102,6 +102,10 @@ docker-compose up -d
 docker compose build --no-cache 
 ```
 
+> 注意：
+> 1. 如果x86 架构 （Linux 平台, Windows 平台, Mac Intel 平台）, 请将 docker-compose.yml 中的 platform 设置为 linux/x86
+> 2. 如果 Apple Silicon 平台, 请将 docker-compose.yml 中的 platform 设置为 linux/amd64
+
 或使用 Docker 直接部署:
 ```bash
 docker build -t markdown-to-image-serve .
