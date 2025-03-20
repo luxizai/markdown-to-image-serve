@@ -5,217 +5,175 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 [![Node Version](https://img.shields.io/node/v/next.svg)](https://nodejs.org)
-[![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/your-username/markdown-to-image-serve/issues)
+[![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/wxingheng/markdown-to-image-serve/issues)
 
-<h4>A Markdown to Image Service based on Next.js and Puppeteer, supporting Vercel deployment and API integration</h4>
+<h4>Markdown to Image Service based on Next.js and Puppeteer, supporting Docker deployment and API integration</h4>
 
-<p>A service that converts Markdown content into beautiful images, providing out-of-the-box API interfaces, supporting quick deployment on Vercel and secondary development</p>
+<p>A service that converts Markdown content into beautiful images, providing ready-to-use API interfaces, supporting Docker quick deployment and secondary development</p>
 
 [简体中文](./README.md) | English
 
 </div>
 
-## 🎯 Project Overview
+## 🎯 Project Introduction
 
-Markdown To Image Serve is an out-of-the-box Markdown to Image API service. You can:
+Markdown To Image Serve is a ready-to-use Markdown to image API service. You can:
 
-- 🚀 **One-Click Deploy** - Deploy on Vercel with one click, no server required
-- 🔄 **API Integration** - Simple and easy-to-use RESTful API interfaces
-- 🎨 **Custom Styling** - Support for custom headers, footers, and style templates
-- �������� **Responsive Design** - Adaptive image output for different sizes
+- 🚀 **One-click Deployment** - Supports Docker Compose one-click deployment
+- 🔄 **API Integration** - Provides simple and easy-to-use RESTful API interfaces
+- 🎨 **Custom Styles** - Supports custom headers, footers, and style templates
+- 📱 **Responsive Design** - Adapts to different image output sizes
+- 🌐 **Multi-platform Support** - Supports various deployment methods including Docker
+- 🔒 **Secure and Reliable** - Supports image hotlink protection and access control
 
-## 🌐 Quick Access
+## 🌟 Core Features
 
-### Online Service
+- 📝 Convert Markdown text to beautiful images
+- 🎨 Support for custom themes and styles
+- 📊 Support for code highlighting and table rendering
+- 🖼️ Support for custom headers and footers
+- 📱 Adaptive to different device sizes
+- 🔄 Support for batch conversion
+- 📦 Provides complete API interfaces
 
-- 🔗 [Online Service](https://markdown-to-image-serve.jcommon.top) - Direct access
-- 📦 [GitHub Repository](https://github.com/wxingheng/markdown-to-image-serve) - Get source code
+## Quick Start
 
-There are two ways to use Markdown To Image Serve:
-1. **API Integration**: Integrate into your project through RESTful API interfaces
-2. **Online Usage**: Visit our [online service](https://markdown-to-image-serve.jcommon.top) directly
+### Online Service (Based on Vercel, may be slow and unstable. Docker deployment recommended)
 
-⭐ [Click Star and Watch to get latest updates](https://github.com/wxingheng/markdown-to-image-serve)
-
-## ⚡️ Quick Deployment
-
-### Vercel Deployment
-
-1. Click the button below to deploy to Vercel
-   
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/markdown-to-image-serve)
-
-2. After deployment, you'll get an API endpoint, e.g.: `https://your-project.vercel.app`
-
-### Docker Deployment
-
-1. Deploy with Docker Compose (Recommended)
-
-```bash
-# Start service
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-```
-
-2. Deploy with Docker directly
-
-```bash
-# Build image
-docker build -t markdown-to-image-serve .
-
-# Run container
-docker run -p 3000:3000 markdown-to-image-serve
-```
-
-Visit [http://localhost:3000](http://localhost:3000) to use the service.
-
-## ✨ Features
-
-- 🎯 **Markdown Rendering** - Full Markdown syntax support
-- 🔄 **Image Processing** - Support for external image references and optimization
-- 🎨 **Custom Templates** - Configurable headers, footers, and styles
-- ⚡️ **High Performance** - Efficient rendering based on Puppeteer
-- 📦 **Simple Integration** - Easy API implementation
-
-## 📦 Getting Started
+Visit our online service to experience it immediately:
+- 🌐 [Online Service](https://markdown-to-image-serve.jcommon.top)
+- 📦 [GitHub Repository](https://github.com/wxingheng/markdown-to-image-serve)
 
 ### Local Development
 
+1. Clone the project
 ```bash
-# Install dependencies
-npm install
-# or
-yarn install
-# or
-pnpm install
+git clone https://github.com/your-username/markdown-to-image-serve.git
+cd markdown-to-image-serve
+```
 
-# Start development server
-npm run dev
-# or
-yarn dev
-# or
+2. Install dependencies
+```bash
+pnpm install
+```
+
+3. Configure environment variables
+Create a `.env` file:
+```bash
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+CHROME_PATH=/path/to/your/chrome  # Chrome browser path
+```
+
+4. Start the development server
+```bash
 pnpm dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see the result.
+### Chrome Path Configuration Guide
 
-### API Usage
+Chrome path can be obtained according to different operating systems:
 
-#### Generate Poster
-
+**macOS**:
 ```bash
-curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePoster' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# Title",
-    "header": "Header Text",
-    "footer": "Footer Text"
-}'
+ls -l /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 ```
 
+**Linux**:
 ```bash
-curl --location 'http://localhost:3000/api/generatePoster' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# Title",
-    "header": "Header Text",
-    "footer": "Footer Text"
-}'
+which google-chrome
+# or
+which chromium
 ```
 
-#### Generate Image
-
-```bash
-curl --location 'https://markdown-to-image-serve.jcommon.top/api/generatePosterImage' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# Title"
-}'
+**Windows**:
+```powershell
+Get-Command chrome | Select-Object -ExpandProperty Definition
+# or visit chrome://version/ to check "Executable Path"
 ```
 
+### Docker Deployment
+
+Using Docker Compose (Recommended Recommended Recommended):
 ```bash
-curl --location 'http://localhost:3000/api/generatePosterImage' \
---header 'Content-Type: application/json' \
---data '{
-    "markdown": "# Title"
-}'
+docker-compose up -d
+```
+
+```
+docker compose build --no-cache 
+```
+
+> Note:
+> 1. For x86 architecture (Linux platform, Windows platform, Mac Intel platform), please set the platform in docker-compose.yml to linux/x86
+> 2. For Apple Silicon platform, please set the platform in docker-compose.yml to linux/amd64
+
+Or deploy directly using Docker:
+```bash
+docker build -t markdown-to-image-serve .
+docker run -p 3000:3000 markdown-to-image-serve
 ```
 
 ## 📚 API Documentation
 
-### POST /api/generatePoster
-
-Generate a poster with header and footer.
+### Generate Poster (POST /api/generatePoster)
 
 **Request Parameters:**
-
-```json
+```typescript
 {
-    "markdown": "Markdown content",
-    "header": "Header text (optional)",
-    "footer": "Footer text (optional)"
+  markdown: string;       // Markdown content
+  header?: string;       // Optional: header text
+  footer?: string;       // Optional: footer text
+  theme?: 'light' | 'dark'; // Optional: theme
+  width?: number;        // Optional: image width
+  height?: number;       // Optional: image height
 }
 ```
 
-### POST /api/generatePosterImage
+**Example Request:**
+```bash
+curl -X POST 'http://localhost:3000/api/generatePoster' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "markdown": "# Hello World\n\nThis is a test. \n # Hello, World!",
+    "header": "My Header",
+    "footer": "My Footer"
+  }'
+```
 
-Generate a poster in pure image format.
+### Generate Image (POST /api/generatePosterImage)
 
 **Request Parameters:**
-
-```json
+```typescript
 {
-    "markdown": "Markdown content"
+  markdown: string;      // Markdown content
+  theme?: string;       // Optional: theme
+  width?: number;       // Optional: image width
 }
 ```
 
-## 🚀 Best Practices
+## 🛠 Development Plan
 
-### Running Example Code
-1. Enter example directory:
-```bash
-cd example
-```
+- [x] Docker deployment support
+- [x] Custom theme functionality
+- [ ] Image compression optimization
+- [ ] Batch generation functionality
+- [x] Chinese font optimization
+- [ ] Custom template system
+- [ ] API access control
 
-2. Run example script:
-```bash
-node api_buffer_2_image.js
-```
+## 🤝 Contribution Guide
 
-### Usage Recommendations
-- Recommended to use Buffer method for image data processing for better performance
-- Refer to example code in the `example` directory for integration
-- Recommended to use async API calls to avoid blocking the main thread
-
-## 🛠 Development Plans
-
-- [x] Support Vercel one-click deployment
-- [x] Support Docker deployment
-- [ ] Optimize image loading performance
-- [ ] Add image compression options
-- [ ] Support batch generation
-- [ ] Fix Chinese character encoding issues
-
-## 🤝 Contributing
-
-Pull requests and issues are welcome!
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/AmazingFeature`
+1. Fork this repository
+2. Create a feature branch: `git checkout -b feature/AmazingFeature`
 3. Commit changes: `git commit -m 'Add some AmazingFeature'`
-4. Push branch: `git push origin feature/AmazingFeature`
-5. Submit Pull Request
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Submit a Pull Request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
-## Acknowledgments
+## Acknowledgements
 
-This project is based on [markdown-to-image](https://github.com/gcui-art/markdown-to-image). Thanks to the original author for the open source contribution. markdown-to-image is an excellent React component that renders Markdown into beautiful poster images.
+Thanks to the [markdown-to-image](https://github.com/gcui-art/markdown-to-image) project for inspiration.
 
----
-
-If this project helps you, please star to support! ⭐️ 
+If this project helps you, please star to support! ⭐️

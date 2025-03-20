@@ -5,7 +5,7 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 [![Node Version](https://img.shields.io/node/v/next.svg)](https://nodejs.org)
-[![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/your-username/markdown-to-image-serve/issues)
+[![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/wxingheng/markdown-to-image-serve/issues)
 
 <h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Docker 一键部署和 API 调用</h4>
 
@@ -36,9 +36,9 @@ Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务�
 - 🔄 支持批量转换功能
 - 📦 提供完整的 API 接口
 
-## �� 快速使用
+##  快速使用
 
-### 在线服务
+### 在线服务(基于Vercel, 可能很慢，且不稳定。建议自行Docker部署)
 
 访问我们的在线服务，立即体验：
 - 🌐 [在线服务](https://markdown-to-image-serve.jcommon.top)
