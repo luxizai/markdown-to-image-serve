@@ -3,7 +3,7 @@
 # *.md.js
 node_modules
 .next
-.env
+# .env
 .env.development.local
 .env.test.local
 .env.production.local

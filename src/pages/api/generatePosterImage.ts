@@ -60,7 +60,10 @@ export default async function handler(
     // 设置视口大小
     await page.setViewport({ width: 1200, height: 1600 });
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    // 本地开发环境
+    const baseUrl = "http://localhost:3000";
+
+    // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const url = `/poster?content=${encodeURIComponent(markdown)}`;
     const fullUrl = `${baseUrl}${url}`;
 

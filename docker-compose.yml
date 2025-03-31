@@ -17,4 +17,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      # 指定缓存目录, 避免每次重新构建
       - /app/.next 
+      # 需要将容器中的文件挂载到宿主机
+      - ./public/uploads/posters:/tmp/uploads/posters
