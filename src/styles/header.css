@@ -1,0 +1,19 @@
+.friend-link-btn {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1890ff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.friend-link-btn:hover {
+  color: #40a9ff;
+  background: rgba(24, 144, 255, 0.1);
+}
+
+.friend-link-btn span {
+  margin-left: 4px;
+}

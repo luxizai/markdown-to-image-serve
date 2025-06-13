@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { Button } from './ui/button'
 
 export default function Header() {
   return (
@@ -47,6 +50,14 @@ export default function Header() {
               <span>Github</span>
             </a>
           </p>
+          {/* 在导航菜单的合适位置添加 */}
+          <a
+            href="https://jcommon.top"
+            target="_blank"
+            className="py-2 px-4 rounded-full flex justify-center items-center lg:hover:bg-indigo-300 duration-200"
+          >
+            <span>🛠️ JCommon工场</span>
+          </a>
         </div>
       </div>
     </nav>
