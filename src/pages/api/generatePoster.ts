@@ -28,7 +28,7 @@ export default async function handler(
 
     // 修改字体加载部分
     try {
-      await chromium.font(path.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf'));
+      await chromium.font(path.posix.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf'));
     } catch (error: any) {
       if (error.code !== 'EEXIST') {
         throw error;
