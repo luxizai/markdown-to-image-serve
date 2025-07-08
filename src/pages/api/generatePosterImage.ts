@@ -33,15 +33,18 @@ export default async function handler(
     // });
     console.log("===============>", process.env.NODE_ENV, process.env.CHROME_PATH)
 
-      // 修改字体加载部分
-      try {
-        await chromium.font(path.posix.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf'));
-      } catch (error: any) {
-        if (error.code !== 'EEXIST') {
-          throw error;
-        }
+    // 修改字体加载部分
+    console.time("chromium.font");
+    try {
+      await chromium.font(path.posix.join(process.cwd(), 'public', 'fonts', 'SimSun.ttf'));
+    } catch (error: any) {
+      if (error.code !== 'EEXIST') {
+        throw error;
       }
+    }
+    console.timeEnd("chromium.font");
 
+    console.time("puppeteer.launch");
     const browser = await puppeteer.launch({
       // args: [...chromium.args, '--hide-scrollbars', '--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox'],
       // 只有 production 环境才需要 args
@@ -54,11 +57,16 @@ export default async function handler(
       headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
+    console.timeEnd("puppeteer.launch");
 
+    console.time("browser.newPage");
     const page = await browser.newPage();
+    console.timeEnd("browser.newPage");
 
     // 设置视口大小
+    console.time("setViewport");
     await page.setViewport({ width: 1200, height: 1600 });
+    console.timeEnd("setViewport");
 
     // 本地开发环境
     const baseUrl = "http://localhost:3000";
@@ -66,14 +74,18 @@ export default async function handler(
     const url = `/poster?content=${encodeURIComponent(markdown)}`;
     const fullUrl = `${baseUrl}${url}`;
 
+    console.time("page.goto");
     await page.goto(fullUrl);
+    console.timeEnd("page.goto");
 
     // 调试：截图页面，便于排查元素是否渲染
     // await page.screenshot({ path: 'debug-before-wait.png' });
 
     try {
+      console.time("waitForSelector");
       // 等待海报元素渲染完成
       await page.waitForSelector(".poster-content", { timeout: 10000 });
+      console.timeEnd("waitForSelector");
     } catch (e) {
       // 超时时输出页面 HTML 便于排查
       // const html = await page.content();
@@ -82,25 +94,36 @@ export default async function handler(
       throw e;
     }
     
-   // 等待所有图片加载完成
+    // 等待所有图片加载完成
+    console.time("waitImages");
     await page.evaluate(() => {
-        return Promise.all(
+      const notLoaded = Array.from(document.images)
+        .filter(img => !img.complete)
+        .map(img => img.src);
+      // 等待未加载完成的图片
+      return Promise.all(
         Array.from(document.images)
-            .filter(img => !img.complete)
-            .map(img => new Promise(resolve => {
+          .filter(img => !img.complete)
+          .map(img => new Promise(resolve => {
             img.onload = img.onerror = resolve;
-            }))
-        );
+          }))
+      ).then(() => notLoaded);
     });
+    console.timeEnd("waitImages");
+
     // 获取元素
+    console.time("getPosterElement");
     const element = await page.$(".poster-content");
+    console.timeEnd("getPosterElement");
 
     if (!element) {
       throw new Error("Poster element not found");
     }
 
     // 获取元素的边界框
+    console.time("boundingBox");
     const box = await element.boundingBox();
+    console.timeEnd("boundingBox");
     if (!box) {
       throw new Error("Could not get element bounds");
     }
@@ -119,6 +142,7 @@ export default async function handler(
     }
 
     // 只截取特定元素
+    console.time("screenshot");
     await page.screenshot({
       path: savePath,
       clip: {
@@ -128,8 +152,11 @@ export default async function handler(
         height: box.height,
       },
     });
+    console.timeEnd("screenshot");
 
+    console.time("browser.close");
     await browser.close();
+    console.timeEnd("browser.close");
 
     // 返回可访问的URL
     const imageUrl = process.env.NODE_ENV === 'production'
