@@ -69,8 +69,19 @@ export default async function handler(
 
     await page.goto(fullUrl);
 
-    // 等待海报元素渲染完成
-    await page.waitForSelector(".poster-content");
+    // 调试：截图页面，便于排查元素是否渲染
+    // await page.screenshot({ path: 'debug-before-wait.png' });
+
+    try {
+      // 等待海报元素渲染完成
+      await page.waitForSelector(".poster-content", { timeout: 10000 });
+    } catch (e) {
+      // 超时时输出页面 HTML 便于排查
+      // const html = await page.content();
+      // fs.writeFileSync('debug-timeout.html', html);
+      // await page.screenshot({ path: 'debug-timeout.png' });
+      throw e;
+    }
     
    // 等待所有图片加载完成
     await page.evaluate(() => {

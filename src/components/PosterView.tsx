@@ -24,9 +24,19 @@ const defaultContentMd = `# AI的发展
 export default function PosterView() {
   // 需要根据url参数，作为mdString 的默认值
   const searchParams = useSearchParams()
-  const mdString = decodeURIComponent(searchParams?.get('content')|| defaultContentMd) 
-  const headerString = decodeURIComponent(searchParams?.get('header') || 'News')
-  const footerString = decodeURIComponent(searchParams?.get('footer') || 'Powered by Powered by markdown-to-image-serve.jcommon.top')
+
+  function safeDecodeURIComponent(val: string | null | undefined, fallback: string) {
+    if (typeof val !== 'string') return fallback;
+    try {
+      return decodeURIComponent(val);
+    } catch {
+      return fallback;
+    }
+  }
+
+  const mdString = safeDecodeURIComponent(searchParams?.get('content'), defaultContentMd);
+  const headerString = safeDecodeURIComponent(searchParams?.get('header'), 'News');
+  const footerString = safeDecodeURIComponent(searchParams?.get('footer'), 'Powered by Powered by markdown-to-image-serve.jcommon.top')
 
   return (
     <div className="poster-content" style={{display: "inline-block"}}>
