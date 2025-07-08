@@ -28,9 +28,10 @@ export default function PosterView() {
   function safeDecodeURIComponent(val: string | null | undefined, fallback: string) {
     if (typeof val !== 'string') return fallback;
     try {
+      // 防止重复 decode
       return decodeURIComponent(val);
     } catch {
-      return fallback;
+      return val;
     }
   }
 

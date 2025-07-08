@@ -62,7 +62,6 @@ export default async function handler(
 
     // 本地开发环境
     const baseUrl = "http://localhost:3000";
-
     // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const url = `/poster?content=${encodeURIComponent(markdown)}`;
     const fullUrl = `${baseUrl}${url}`;
