@@ -1,7 +1,7 @@
 /*
  * @Author: wxingheng
  * @Date: 2024-11-28 14:20:13
- * @LastEditTime: 2025-03-15 17:18:48
+ * @LastEditTime: 2025-07-09 16:15:27
  * @LastEditors: wxingheng
  * @Description: 生成海报; 返回海报图片 url
  * @FilePath: /markdown-to-image-serve/src/pages/api/generatePosterImage.ts
@@ -22,7 +22,7 @@ export default async function handler(
   }
 
   try {
-    const { markdown } = req.body;
+    const { markdown, header, footer, logo } = req.body;
 
     // 启动浏览器
     // const browser = await puppeteer.launch({ headless: true });
@@ -71,9 +71,9 @@ export default async function handler(
     // 本地开发环境
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const url = `/poster?content=${encodeURIComponent(markdown)}`;
+    const url = `/poster?content=${encodeURIComponent(markdown)}&header=${encodeURIComponent(header)}&footer=${encodeURIComponent(footer)}&logo=${encodeURIComponent(logo)}`;
     const fullUrl = `${baseUrl}${url}`;
-
+    console.log("fullUrl", fullUrl);
     console.time("page.goto");
     await page.goto(fullUrl);
     console.timeEnd("page.goto");
@@ -96,18 +96,32 @@ export default async function handler(
     
     // 等待所有图片加载完成
     console.time("waitImages");
-    await page.evaluate(() => {
-      const notLoaded = Array.from(document.images)
-        .filter(img => !img.complete)
-        .map(img => img.src);
-      // 等待未加载完成的图片
-      return Promise.all(
-        Array.from(document.images)
-          .filter(img => !img.complete)
-          .map(img => new Promise(resolve => {
-            img.onload = img.onerror = resolve;
-          }))
-      ).then(() => notLoaded);
+    const imagesLoadTime = await page.evaluate(() => {
+      // 只统计未加载完成的图片
+      const notLoadedImgs = Array.from(document.images).filter(img => !img.complete);
+      const loadPromises = notLoadedImgs.map(img => {
+        const start = performance.now();
+        return new Promise(resolve => {
+          img.onload = img.onerror = () => {
+            const end = performance.now();
+            resolve({
+              src: img.src,
+              loadTime: end - start
+            });
+          };
+        });
+      });
+      // 已经加载完成的图片也返回
+      const loadedImgs = Array.from(document.images)
+        .filter(img => img.complete)
+        .map(img => ({
+          src: img.src,
+          loadTime: 0
+        }));
+      return Promise.all(loadPromises).then(results => [...loadedImgs, ...results]);
+    });
+    imagesLoadTime.forEach(img => {
+      console.log(`图片: ${img.src} 加载用时: ${img.loadTime.toFixed(2)} ms`);
     });
     console.timeEnd("waitImages");
 

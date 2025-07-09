@@ -36,19 +36,21 @@ export default function PosterView() {
   }
 
   const mdString = safeDecodeURIComponent(searchParams?.get('content'), defaultContentMd);
-  const headerString = safeDecodeURIComponent(searchParams?.get('header'), 'News');
-  const footerString = safeDecodeURIComponent(searchParams?.get('footer'), 'Powered by Powered by markdown-to-image-serve.jcommon.top')
+  const headerString = safeDecodeURIComponent(searchParams?.get('header'), '');
+  const footerString = safeDecodeURIComponent(searchParams?.get('footer'), 'Powered by markdown-to-image-serve.jcommon.top')
+  const logo = ('/logo.png')
+  // const logoString = safeDecodeURIComponent(searchParams?.get('logo'), logo);
 
   return (
     <div className="poster-content" style={{display: "inline-block"}}>
           {/* Preview */}
             <Md2Poster theme="SpringGradientWave" >
               <Md2PosterHeader  className="flex justify-center items-center px-4 font-medium text-lg">
-                <span>{new Date().toISOString().slice(0, 10)} {headerString}</span>
+                <span>{headerString || new Date().toISOString().slice(0, 10)} </span>
               </Md2PosterHeader>
               <Md2PosterContent>{mdString}</Md2PosterContent>
               <Md2PosterFooter className='text-center'>
-                <Image src="/logo.png" alt="logo" width={20} height={20} className='inline-block mr-2' />
+                <Image src={logo} alt="logo" width={20} height={20} className='inline-block mr-2' />
                 {footerString}
               </Md2PosterFooter>
             </Md2Poster>
