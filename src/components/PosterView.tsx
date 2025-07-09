@@ -4,7 +4,11 @@ import { Md2PosterContent, Md2Poster, Md2PosterHeader, Md2PosterFooter } from 'm
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image'
 
+type IThemeType = 'blue' | 'pink' | 'purple' | 'green' | 'yellow' | 'gray' | 'red' | 'indigo' | 'SpringGradientWave';
+
+
 const defaultContentMd = `# AI的发展
+
 
 人工智能(AI)正在以前所未有的速度发展，深刻改变着我们的生活方式。从ChatGPT到DALL-E，从自动驾驶到智能医疗，AI技术正在各个领域展现其强大潜力。
 
@@ -40,11 +44,12 @@ export default function PosterView() {
   const footerString = safeDecodeURIComponent(searchParams?.get('footer'), 'Powered by markdown-to-image-serve.jcommon.top')
   const logo = ('/logo.png')
   const logoString = safeDecodeURIComponent(searchParams?.get('logo'), logo);
+  const theme = safeDecodeURIComponent(searchParams?.get('theme'), 'SpringGradientWave');
 
   return (
     <div className="poster-content" style={{display: "inline-block"}}>
           {/* Preview */}
-            <Md2Poster theme="SpringGradientWave" >
+            <Md2Poster theme={theme as IThemeType} >
               <Md2PosterHeader  className="flex justify-center items-center px-4 font-medium text-lg">
                 <span>{headerString || new Date().toISOString().slice(0, 10)} </span>
               </Md2PosterHeader>

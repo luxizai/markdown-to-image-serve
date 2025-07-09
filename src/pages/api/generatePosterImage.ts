@@ -1,7 +1,7 @@
 /*
  * @Author: wxingheng
  * @Date: 2024-11-28 14:20:13
- * @LastEditTime: 2025-07-09 17:40:09
+ * @LastEditTime: 2025-07-09 17:53:09
  * @LastEditors: wxingheng
  * @Description: 生成海报; 返回海报图片 url
  * @FilePath: /markdown-to-image-serve/src/pages/api/generatePosterImage.ts
@@ -30,7 +30,7 @@ export default async function handler(
   }
 
   try {
-    const { markdown, header, footer, logo } = req.body;
+    const { markdown, header, footer, logo, theme } = req.body;
 
     // 启动浏览器
     // const browser = await puppeteer.launch({ headless: true });
@@ -86,6 +86,7 @@ export default async function handler(
         header,
         footer,
         logo,
+        theme,
       }
     );
     const fullUrl = `${baseUrl}${url}`;

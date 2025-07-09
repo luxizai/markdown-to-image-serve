@@ -127,9 +127,8 @@ docker run -p 3000:3000 markdown-to-image-serve
   markdown: string;       // Markdown 内容
   header?: string;       // 可选：页眉文本
   footer?: string;       // 可选：页脚文本
-  theme?: 'light' | 'dark'; // 可选：主题
-  width?: number;        // 可选：图片宽度
-  height?: number;       // 可选：图片高度
+  logo?: string;       // 可选：logo图片url
+  theme?: 'blue' | 'pink' | 'purple' | 'green' | 'yellow' | 'gray' | 'red' | 'indigo' | 'SpringGradientWave'; // 可选：主题
 }
 ```
 
@@ -149,9 +148,11 @@ curl -X POST 'http://localhost:3000/api/generatePoster' \
 **请求参数：**
 ```typescript
 {
-  markdown: string;      // Markdown 内容
-  theme?: string;       // 可选：主题
-  width?: number;       // 可选：图片宽度
+  markdown: string;       // Markdown 内容
+  header?: string;       // 可选：页眉文本
+  footer?: string;       // 可选：页脚文本
+  logo?: string;       // 可选：logo图片url
+  theme?: 'blue' | 'pink' | 'purple' | 'green' | 'yellow' | 'gray' | 'red' | 'indigo' | 'SpringGradientWave'; // 可选：主题
 }
 ```
 
