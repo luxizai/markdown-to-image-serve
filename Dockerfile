@@ -1,5 +1,17 @@
-# 使用网易云镜像
+# 使用官方 node 镜像，结合国内加速器
 FROM node:20-slim
+# FROM registry.cn-hangzhou.aliyuncs.com/google_containers/node:20-slim
+# FROM ccr.ccs.tencentyun.com/dockerhub-mirror/library/node:20-slim
+
+# 推荐：使用 Docker 国内加速器（如阿里云、DaoCloud、腾讯云等）
+# 你可以在 Docker Desktop 设置里配置加速器，或在 /etc/docker/daemon.json 添加：
+# {
+#   "registry-mirrors": ["https://<你的加速器ID>.mirror.aliyuncs.com"]
+# }
+# 然后重启 Docker 服务
+
+# 设置 npm 镜像为淘宝源，加速依赖安装
+RUN npm config set registry https://registry.npmmirror.com
 
 # 添加Google Chrome的密钥
 ADD https://dl-ssl.google.com/linux/linux_signing_key.pub /tmp/linux_signing_key.pub
@@ -69,4 +81,4 @@ ENV CHROME_PATH=/usr/bin/google-chrome-unstable
 # ENV NEXT_PUBLIC_BASE_URL=http://localhost:3000
 
 # 启动命令
-CMD ["npm", "start"] 
+CMD ["npm", "start"]
