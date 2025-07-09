@@ -1,7 +1,7 @@
 /*
  * @Author: wxingheng
  * @Date: 2024-11-28 14:20:13
- * @LastEditTime: 2025-07-09 16:15:27
+ * @LastEditTime: 2025-07-09 17:40:09
  * @LastEditors: wxingheng
  * @Description: 生成海报; 返回海报图片 url
  * @FilePath: /markdown-to-image-serve/src/pages/api/generatePosterImage.ts
@@ -12,6 +12,14 @@ import path from "path";
 import fs from "fs";
 const chromium = require('@sparticuz/chromium-min');
 const puppeteer = require('puppeteer-core');
+
+function buildPosterUrl(base: string, params: Record<string, any>) {
+  const query = Object.entries(params)
+    .filter(([_, v]) => v !== undefined && v !== null && v !== '')
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+    .join('&');
+  return `${base}${query ? '?' + query : ''}`;
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -71,7 +79,15 @@ export default async function handler(
     // 本地开发环境
     const baseUrl = "http://localhost:3000";
     // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const url = `/poster?content=${encodeURIComponent(markdown)}&header=${encodeURIComponent(header)}&footer=${encodeURIComponent(footer)}&logo=${encodeURIComponent(logo)}`;
+    const url = buildPosterUrl(
+      '/poster',
+      {
+        content: markdown,
+        header,
+        footer,
+        logo,
+      }
+    );
     const fullUrl = `${baseUrl}${url}`;
     console.log("fullUrl", fullUrl);
     console.time("page.goto");

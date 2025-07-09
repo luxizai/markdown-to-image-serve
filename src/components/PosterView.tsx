@@ -39,7 +39,7 @@ export default function PosterView() {
   const headerString = safeDecodeURIComponent(searchParams?.get('header'), '');
   const footerString = safeDecodeURIComponent(searchParams?.get('footer'), 'Powered by markdown-to-image-serve.jcommon.top')
   const logo = ('/logo.png')
-  // const logoString = safeDecodeURIComponent(searchParams?.get('logo'), logo);
+  const logoString = safeDecodeURIComponent(searchParams?.get('logo'), logo);
 
   return (
     <div className="poster-content" style={{display: "inline-block"}}>
@@ -50,7 +50,7 @@ export default function PosterView() {
               </Md2PosterHeader>
               <Md2PosterContent>{mdString}</Md2PosterContent>
               <Md2PosterFooter className='text-center'>
-                <Image src={logo} alt="logo" width={20} height={20} className='inline-block mr-2' />
+                <Image src={logoString} alt="logo" width={20} height={20} className='inline-block mr-2' />
                 {footerString}
               </Md2PosterFooter>
             </Md2Poster>
