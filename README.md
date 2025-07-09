@@ -1,5 +1,3 @@
-<div align="center">
-
 # Markdown To Image Serve
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
@@ -7,128 +5,127 @@
 [![Node Version](https://img.shields.io/node/v/next.svg)](https://nodejs.org)
 [![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/wxingheng/markdown-to-image-serve/issues)
 
+<div align="center">
 <h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Docker 一键部署和 API 调用</h4>
-
-<p>一个将 Markdown 内容转换为精美图片的服务，提供开箱即用的 API 接口，支持 Docker 快速部署和二次开发</p>
-
+<p>将 Markdown 内容转换为精美图片，提供开箱即用的 API 接口，支持 Docker 快速部署和二次开发。</p>
 简体中文 | [English](./README_EN.md)
-
 </div>
+
+---
 
 ## 🎯 项目简介
 
-Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务。你可以：
+Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务，支持以下特性：
 
-- 🚀 **一键部署** - 支持 Docker Compose 一键部署
-- 🔄 **API 集成** - 提供简单易用的 RESTful API 接口
-- 🎨 **自定义样式** - 支持自定义页眉页脚和样式模板
-- 📱 **响应式设计** - 自适应不同尺寸的图片输出
-- 🌐 **多平台支持** - 支持 Docker 等多种部署方式
-- 🔒 **安全可靠** - 支持图片防盗链和访问控制
+- 🚀 一键部署（支持 Docker Compose）
+- 🔄 简单易用的 RESTful API
+- 🎨 自定义样式、页眉页脚和主题模板
+- 📱 响应式设计，适配多种尺寸
+- 🌐 多平台支持（Docker 等）
+- 🔒 图片防盗链与访问控制
 
-![poster-1751965703931](https://github.com/user-attachments/assets/a0e641b8-9369-4cc6-b602-256f26089777)
-- ![image](https://github.com/user-attachments/assets/d67f3b84-0a1a-4b60-853b-fcf13d313d0e)
-![image](https://github.com/user-attachments/assets/e5e4ac59-a607-42d7-9d47-180eb7fe2268)
+![示例1](https://github.com/user-attachments/assets/a0e641b8-9369-4cc6-b602-256f26089777)
+![示例2](https://github.com/user-attachments/assets/d67f3b84-0a1a-4b60-853b-fcf13d313d0e)
+![示例3](https://github.com/user-attachments/assets/e5e4ac59-a607-42d7-9d47-180eb7fe2268)
 
+---
 
 ## 🌟 核心功能
 
-- 📝 将 Markdown 文本转换为精美图片
+- 📝 Markdown 文本转精美图片
 - 🎨 支持自定义主题和样式
-- 📊 支持代码高亮和表格渲染
-- 🖼️ 支持自定义页眉页脚
-- 📱 自适应不同设备尺寸
-- 🔄 支持批量转换功能
-- 📦 提供完整的 API 接口
+- 📊 代码高亮与表格渲染
+- 🖼️ 自定义页眉页脚
+- 📱 响应式输出
+- 🔄 批量转换
+- 📦 完整 API 支持
 
-##  快速使用
+---
 
-### 在线服务(基于Vercel, 可能很慢，且不稳定。建议自行Docker部署)
+## 🚀 快速开始
 
-访问我们的在线服务，立即体验：
-- 🌐 [在线服务](https://markdown-to-image-serve.jcommon.top)
-- 📦 [GitHub 仓库](https://github.com/wxingheng/markdown-to-image-serve)
+### 在线体验
+
+- [在线服务（Vercel，速度较慢，建议本地部署）](https://markdown-to-image-serve.jcommon.top)
+- [GitHub 仓库](https://github.com/wxingheng/markdown-to-image-serve)
 
 ### 本地开发
 
 1. 克隆项目
-```bash
-git clone https://github.com/your-username/markdown-to-image-serve.git
-cd markdown-to-image-serve
-```
+   ```bash
+   git clone https://github.com/your-username/markdown-to-image-serve.git
+   cd markdown-to-image-serve
+   ```
 
 2. 安装依赖
-```bash
-pnpm install
-```
+   ```bash
+   pnpm install
+   ```
 
-3. 配置环境变量
-创建 `.env` 文件：
-```bash
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-CHROME_PATH=/path/to/your/chrome  # Chrome 浏览器路径
-```
+3. 配置环境变量  
+   新建 `.env` 文件，内容如下：
+   ```env
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
+   CHROME_PATH=/path/to/your/chrome  # Chrome 浏览器路径
+   ```
 
 4. 启动开发服务器
-```bash
-pnpm dev
-```
+   ```bash
+   pnpm dev
+   ```
 
-### Chrome 路径配置指南
+#### Chrome 路径获取方式
 
-根据不同操作系统，Chrome 路径获取方式如下：
+- **macOS**:
+  ```bash
+  ls -l /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+  ```
+- **Linux**:
+  ```bash
+  which google-chrome
+  # 或
+  which chromium
+  ```
+- **Windows**:
+  ```powershell
+  Get-Command chrome | Select-Object -ExpandProperty Definition
+  # 或在 chrome://version/ 查看"可执行文件路径"
+  ```
 
-**macOS**:
-```bash
-ls -l /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
-```
+---
 
-**Linux**:
-```bash
-which google-chrome
-# 或
-which chromium
-```
+### Docker 部署（推荐）
 
-**Windows**:
-```powershell
-Get-Command chrome | Select-Object -ExpandProperty Definition
-# 或访问 chrome://version/ 查看"可执行文件路径"
-```
+1. 使用 Docker Compose
+   ```bash
+   docker-compose up -d
+   # 或
+   docker compose build --no-cache
+   ```
+   > **注意：**  
+   > - x86 架构（Linux/Windows/Mac Intel）：请将 `docker-compose.yml` 中的 platform 设置为 `linux/x86`  
+   > - Apple Silicon：请设置为 `linux/amd64`
 
-### Docker 部署
+2. 直接使用 Docker
+   ```bash
+   docker build -t markdown-to-image-serve .
+   docker run -p 3000:3000 markdown-to-image-serve
+   ```
 
-使用 Docker Compose（推荐 推荐 推荐）:
-```bash
-docker-compose up -d
-```
-
-```
-docker compose build --no-cache 
-```
-
-> 注意：
-> 1. 如果x86 架构 （Linux 平台, Windows 平台, Mac Intel 平台）, 请将 docker-compose.yml 中的 platform 设置为 linux/x86
-> 2. 如果 Apple Silicon 平台, 请将 docker-compose.yml 中的 platform 设置为 linux/amd64
-
-或使用 Docker 直接部署:
-```bash
-docker build -t markdown-to-image-serve .
-docker run -p 3000:3000 markdown-to-image-serve
-```
+---
 
 ## 📚 API 文档
 
-### 生成海报 (POST /api/generatePoster)
+### 1. 生成海报（POST `/api/generatePoster`）
 
 **请求参数：**
-```typescript
+```json5
 {
-  markdown: string;       // Markdown 内容
-  header?: string;       // 可选：页眉文本
-  footer?: string;       // 可选：页脚文本
-  logo?: string;       // 可选：logo图片url
-  theme?: 'blue' | 'pink' | 'purple' | 'green' | 'yellow' | 'gray' | 'red' | 'indigo' | 'SpringGradientWave'; // 可选：主题
+  "markdown": "string",       // Markdown 内容
+  "header": "string",         // 可选：页眉文本
+  "footer": "string",         // 可选：页脚文本
+  "logo": "string",           // 可选：logo图片url
+  "theme": "blue | pink | purple | green | yellow | gray | red | indigo | SpringGradientWave" // 可选：主题
 }
 ```
 
@@ -143,18 +140,11 @@ curl -X POST 'http://localhost:3000/api/generatePoster' \
   }'
 ```
 
-### 生成图片 (POST /api/generatePosterImage)
+### 2. 生成图片（POST `/api/generatePosterImage`）
 
-**请求参数：**
-```typescript
-{
-  markdown: string;       // Markdown 内容
-  header?: string;       // 可选：页眉文本
-  footer?: string;       // 可选：页脚文本
-  logo?: string;       // 可选：logo图片url
-  theme?: 'blue' | 'pink' | 'purple' | 'green' | 'yellow' | 'gray' | 'red' | 'indigo' | 'SpringGradientWave'; // 可选：主题
-}
-```
+**请求参数与 `/api/generatePoster` 相同。**
+
+---
 
 ## 🛠 开发计划
 
@@ -166,6 +156,8 @@ curl -X POST 'http://localhost:3000/api/generatePoster' \
 - [ ] 自定义模板系统
 - [ ] API 访问控制
 
+---
+
 ## 🤝 贡献指南
 
 1. Fork 本仓库
@@ -174,13 +166,17 @@ curl -X POST 'http://localhost:3000/api/generatePoster' \
 4. 推送分支：`git push origin feature/AmazingFeature`
 5. 提交 Pull Request
 
+---
+
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+本项目采用 MIT 许可证，详见 [LICENSE](LICENSE) 文件。
+
+---
 
 ## 致谢
 
 感谢 [markdown-to-image](https://github.com/gcui-art/markdown-to-image) 项目的启发。
 
-如果这个项目对你有帮助，欢迎 star 支持！ ⭐️
+如果本项目对你有帮助，欢迎 star 支持！⭐️
 
