@@ -114,7 +114,7 @@ docker run -p 3000:3000 markdown-to-image-serve
 
 ## 📚 API Documentation
 
-### Generate Poster (POST /api/generatePoster)
+### Generate Poster (POST /api/generatePosterImage)
 
 **Request Parameters:**
 ```typescript
@@ -130,7 +130,7 @@ docker run -p 3000:3000 markdown-to-image-serve
 
 **Example Request:**
 ```bash
-curl -X POST 'http://localhost:3000/api/generatePoster' \
+curl -X POST 'http://localhost:3000/api/generatePosterImage' \
   -H 'Content-Type: application/json' \
   -d '{
     "markdown": "# Hello World\n\nThis is a test. \n # Hello, World!",

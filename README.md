@@ -6,8 +6,8 @@
 [![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/wxingheng/markdown-to-image-serve/issues)
 
 <div align="center">
-<h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Docker 一键部署和 API 调用</h4>
-<p>将 Markdown 内容转换为精美图片，提供开箱即用的 API 接口，支持 Docker 快速部署和二次开发。</p>
+<h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Docker 一键部署与 API 调用</h4>
+<p>将 Markdown 内容高效转换为精美图片，提供开箱即用的 API 接口，支持 Docker 快速部署与二次开发。</p>
 简体中文 | [English](./README_EN.md)
 </div>
 
@@ -15,14 +15,14 @@
 
 ## 🎯 项目简介
 
-Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务，支持以下特性：
+Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务，具备以下特性：
 
 - 🚀 一键部署（支持 Docker Compose）
-- 🔄 简单易用的 RESTful API
-- 🎨 自定义样式、页眉页脚和主题模板
+- 🔄 简洁易用的 RESTful API
+- 🎨 支持自定义样式、页眉页脚与主题模板
 - 📱 响应式设计，适配多种尺寸
-- 🌐 多平台支持（Docker 等）
-- 🔒 图片防盗链与访问控制
+- 🌐 多平台兼容（如 Docker 等）
+- 🔒 支持图片防盗链与访问控制
 
 ![示例1](https://github.com/user-attachments/assets/a0e641b8-9369-4cc6-b602-256f26089777)
 ![示例2](https://github.com/user-attachments/assets/d67f3b84-0a1a-4b60-853b-fcf13d313d0e)
@@ -32,13 +32,13 @@ Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务�
 
 ## 🌟 核心功能
 
-- 📝 Markdown 文本转精美图片
-- 🎨 支持自定义主题和样式
+- 📝 Markdown 文本一键转图片
+- 🎨 多主题与自定义样式支持
 - 📊 代码高亮与表格渲染
 - 🖼️ 自定义页眉页脚
-- 📱 响应式输出
-- 🔄 批量转换
-- 📦 完整 API 支持
+- 📱 响应式输出，适配多端
+- 🔄 批量转换能力
+- 📦 完善的 API 支持
 
 ---
 
@@ -116,7 +116,7 @@ Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务�
 
 ## 📚 API 文档
 
-### 1. 生成海报（POST `/api/generatePoster`）
+### 1. 生成海报（POST `/api/generatePosterImage`）
 
 **请求参数：**
 ```json5
@@ -131,7 +131,7 @@ Markdown To Image Serve 是一个开箱即用的 Markdown 转图片 API 服务�
 
 **示例请求：**
 ```bash
-curl -X POST 'http://localhost:3000/api/generatePoster' \
+curl -X POST 'http://localhost:3000/api/generatePosterImage' \
   -H 'Content-Type: application/json' \
   -d '{
     "markdown": "# Hello World\n\nThis is a test. \n # 你好，世界!",
@@ -139,10 +139,6 @@ curl -X POST 'http://localhost:3000/api/generatePoster' \
     "footer": "My Footer"
   }'
 ```
-
-### 2. 生成图片（POST `/api/generatePosterImage`）
-
-**请求参数与 `/api/generatePoster` 相同。**
 
 ---
 
