@@ -6,8 +6,6 @@ services:
       context: .
     # 指定平台 amd64 架构 （Mac Apple Silicon 平台）
     platform: linux/amd64
-    # 指定平台 x86 架构 （Linux 平台, Windows 平台, Mac Intel 平台）
-    # platform: linux/x86
     ports:
       - "3000:3000"
     environment:

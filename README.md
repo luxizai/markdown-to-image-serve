@@ -6,9 +6,11 @@
 [![Issues](https://img.shields.io/github/issues/your-username/markdown-to-image-serve.svg)](https://github.com/wxingheng/markdown-to-image-serve/issues)
 
 <div align="center">
+
 <h4>基于 Next.js 和 Puppeteer 的 Markdown 转图片服务，支持 Docker 一键部署与 API 调用</h4>
 <p>将 Markdown 内容高效转换为精美图片，提供开箱即用的 API 接口，支持 Docker 快速部署与二次开发。</p>
 简体中文 | [English](./README_EN.md)
+
 </div>
 
 ---
@@ -51,25 +53,25 @@ Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务�
 
 ### 本地开发
 
-1. 克隆项目
+1. **克隆项目**
    ```bash
    git clone https://github.com/your-username/markdown-to-image-serve.git
    cd markdown-to-image-serve
    ```
 
-2. 安装依赖
+2. **安装依赖**
    ```bash
    pnpm install
    ```
 
-3. 配置环境变量  
+3. **配置环境变量**  
    新建 `.env` 文件，内容如下：
    ```env
    NEXT_PUBLIC_BASE_URL=http://localhost:3000
    CHROME_PATH=/path/to/your/chrome  # Chrome 浏览器路径
    ```
 
-4. 启动开发服务器
+4. **启动开发服务器**
    ```bash
    pnpm dev
    ```
@@ -96,21 +98,26 @@ Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务�
 
 ### Docker 部署（推荐）
 
-1. 使用 Docker Compose
-   ```bash
-   docker-compose up -d
-   # 或
-   docker compose build --no-cache
-   ```
-   > **注意：**  
-   > - x86 架构（Linux/Windows/Mac Intel）：请将 `docker-compose.yml` 中的 platform 设置为 `linux/x86`  
-   > - Apple Silicon：请设置为 `linux/amd64`
+#### 1. 使用 Docker Compose
 
-2. 直接使用 Docker
-   ```bash
-   docker build -t markdown-to-image-serve .
-   docker run -p 3000:3000 markdown-to-image-serve
-   ```
+```bash
+docker-compose up -d
+# 或
+docker compose build --no-cache
+```
+
+#### 2. 直接使用 Docker
+
+```bash
+docker build --platform=linux/amd64 -t markdown-to-image-serve .
+docker run -p 3000:3000 markdown-to-image-serve
+```
+
+> **注意：** 如果你在 Docker 构建过程中遇到报错，可以尝试先执行以下命令关闭 BuildKit：
+> ```bash
+> export DOCKER_BUILDKIT=0
+> export COMPOSE_DOCKER_CLI_BUILD=0
+> ```
 
 ---
 
@@ -119,6 +126,7 @@ Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务�
 ### 1. 生成海报（POST `/api/generatePosterImage`）
 
 **请求参数：**
+
 ```json5
 {
   "markdown": "string",       // Markdown 内容
@@ -130,6 +138,7 @@ Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务�
 ```
 
 **示例请求：**
+
 ```bash
 curl -X POST 'http://localhost:3000/api/generatePosterImage' \
   -H 'Content-Type: application/json' \
