@@ -1,7 +1,7 @@
 <!--
  * @Author: wxingheng
  * @Date: 2025-07-23 17:55:43
- * @LastEditTime: 2025-07-24 09:04:16
+ * @LastEditTime: 2025-07-24 17:42:59
  * @LastEditors: wxingheng
  * @Description: Docker 镜像推送与使用说明
  * @FilePath: /markdown-to-image-serve/dev.md
@@ -69,3 +69,11 @@ docker run -p 3000:3000 markdown-to-image-serve
 > export DOCKER_BUILDKIT=0
 > export COMPOSE_DOCKER_CLI_BUILD=0
 > ```
+
+
+
+docker build -f Dockerfile.base -t node-chrome-base .
+docker tag node-chrome-base wxingheng/node-chrome-base:0.0.1
+docker push wxingheng/node-chrome-base:0.0.1
+
+

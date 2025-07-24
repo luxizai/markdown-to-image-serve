@@ -120,7 +120,9 @@ docker-compose up -d
 ### 自行构建
 
 ```bash
-docker build --platform=linux/amd64 -t markdown-to-image-serve .
+# docker build --platform=linux/amd64 -t markdown-to-image-serve .
+
+docker build -f Dockerfile -t markdown-to-image-serve .
 
 docker run -p 3000:3000 markdown-to-image-serve
 ```
