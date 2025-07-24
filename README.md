@@ -102,14 +102,26 @@ Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务�
 
 ```bash
 docker-compose up -d
-# 或
-docker compose build --no-cache
 ```
 
 #### 2. 直接使用 Docker
 
+拉取镜像：
+   ```bash
+   docker pull wxingheng/markdown-to-image-serve:0.0.1
+   ```
+运行容器：
+   ```bash
+   docker run -p 3000:3000 wxingheng/markdown-to-image-serve:0.0.1
+   ```
+
+---
+
+### 自行构建
+
 ```bash
 docker build --platform=linux/amd64 -t markdown-to-image-serve .
+
 docker run -p 3000:3000 markdown-to-image-serve
 ```
 

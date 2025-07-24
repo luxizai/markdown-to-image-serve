@@ -2,9 +2,11 @@ version: '0.1'
 
 services:
   app:
-    build:
-      context: .
-    # 指定平台 amd64 架构 （Mac Apple Silicon 平台）
+    # 使用本地构建
+    # build:
+      # context: .
+    # 使用已有的远程镜像
+    image: wxingheng/markdown-to-image-serve:0.0.1
     platform: linux/amd64
     ports:
       - "3000:3000"

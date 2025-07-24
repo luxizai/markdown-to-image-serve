@@ -1,7 +1,7 @@
 <!--
  * @Author: wxingheng
  * @Date: 2025-07-23 17:55:43
- * @LastEditTime: 2025-07-23 17:56:47
+ * @LastEditTime: 2025-07-24 09:04:16
  * @LastEditors: wxingheng
  * @Description: Docker 镜像推送与使用说明
  * @FilePath: /markdown-to-image-serve/dev.md
@@ -45,6 +45,27 @@
   - 可用 `docker images` 查看镜像大小。
   - 优化建议：多阶段构建、精简依赖、清理缓存等。
 
----
 
-如需自动化推送，可结合 GitHub Actions 等 CI 工具实现自动构建与推送。
+# 自行构建
+
+
+## 1. 使用 Docker Compose
+
+```bash
+docker-compose up -d
+# 或
+docker compose build --no-cache
+```
+
+## 2. 直接使用 Docker
+
+```bash
+docker build --platform=linux/amd64 -t markdown-to-image-serve .
+docker run -p 3000:3000 markdown-to-image-serve
+```
+
+> **注意：** 如果你在 Docker 构建过程中遇到报错，可以尝试先执行以下命令关闭 BuildKit：
+> ```bash
+> export DOCKER_BUILDKIT=0
+> export COMPOSE_DOCKER_CLI_BUILD=0
+> ```

@@ -1,0 +1,16 @@
+version: '0.1'
+
+services:
+  app:
+    image: wxingheng/markdown-to-image-serve:0.0.1
+    # 指定平台 amd64 架构 （Mac Apple Silicon 平台）
+    platform: linux/amd64
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+      - CHROME_PATH=/usr/bin/google-chrome-unstable
+    volumes:
+      # 只挂载必要的目录，不挂载源代码
+      - ./public/uploads/posters:/tmp/uploads/posters 
