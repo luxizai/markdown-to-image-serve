@@ -26,9 +26,15 @@ Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务�
 - 🌐 多平台兼容（如 Docker 等）
 - 🔒 支持图片防盗链与访问控制
 
-![示例1](https://github.com/user-attachments/assets/a0e641b8-9369-4cc6-b602-256f26089777)
-![示例2](https://github.com/user-attachments/assets/d67f3b84-0a1a-4b60-853b-fcf13d313d0e)
-![示例3](https://github.com/user-attachments/assets/e5e4ac59-a607-42d7-9d47-180eb7fe2268)
+---
+
+## 🖼️ 效果展示
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/a0e641b8-9369-4cc6-b602-256f26089777" width="32%" alt="示例1" />
+  <img src="https://github.com/user-attachments/assets/d67f3b84-0a1a-4b60-853b-fcf13d313d0e" width="32%" alt="示例2" />
+  <img src="https://github.com/user-attachments/assets/e5e4ac59-a607-42d7-9d47-180eb7fe2268" width="32%" alt="示例3" />
+</div>
 
 ---
 
@@ -56,7 +62,6 @@ Markdown To Image Serve 是一款开箱即用的 Markdown 转图片 API 服务�
 1. **克隆项目**
    ```bash
    git clone https://github.com/your-username/markdown-to-image-serve.git
-   cd markdown-to-image-serve
    ```
 
 2. **安装依赖**
