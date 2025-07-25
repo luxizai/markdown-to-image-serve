@@ -1,7 +1,7 @@
 <!--
  * @Author: wxingheng
  * @Date: 2025-07-23 17:55:43
- * @LastEditTime: 2025-07-24 17:42:59
+ * @LastEditTime: 2025-07-25 09:07:30
  * @LastEditors: wxingheng
  * @Description: Docker 镜像推送与使用说明
  * @FilePath: /markdown-to-image-serve/dev.md
@@ -61,6 +61,10 @@ docker compose build --no-cache
 
 ```bash
 docker build --platform=linux/amd64 -t markdown-to-image-serve .
+
+docker build -f Dockerfile -t markdown-to-image-serve .
+docker tag markdown-to-image-serve wxingheng/markdown-to-image-serve:0.0.2
+docker push wxingheng/markdown-to-image-serve:0.0.2
 docker run -p 3000:3000 markdown-to-image-serve
 ```
 
