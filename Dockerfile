@@ -1,5 +1,5 @@
 # 文件：Dockerfile
-FROM wxingheng/node-chrome-base:0.0.1
+FROM wxingheng/node-chrome-base:latest
 
 # 设置工作目录
 WORKDIR /app

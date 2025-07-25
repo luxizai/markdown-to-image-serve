@@ -1,18 +1,35 @@
 name: Docker Image CI
+# 工作流名称，显示在 GitHub Actions 的界面上，表示这是一个用于构建 Docker 镜像的持续集成流程
 
 on:
   push:
     branches: [ "master" ]
+    # 当代码被 push 到 master 分支时触发此工作流
   pull_request:
     branches: [ "master" ]
+    # 当有针对 master 分支的 pull request 时也会触发此工作流
 
 jobs:
+  # 定义所有的 Job（作业），每个 Job 可以包含多个步骤
 
   build:
+    # 定义一个名为 build 的 Job
 
     runs-on: ubuntu-latest
+    # 指定 Job 运行的虚拟机环境，这里用的是最新版的 Ubuntu
 
     steps:
+    # Job 下的所有步骤，按顺序依次执行
+
     - uses: actions/checkout@v4
+      # 第一步，使用官方的 actions/checkout Action，把当前仓库的代码检出到 runner 虚拟机上
+      # v4 表示使用该 Action 的第4个主版本
+
     - name: Build the Docker image
+      # 第二步，给这一步命名为“Build the Docker image”，方便在 Actions 页面查看
+
       run: docker build . --file Dockerfile --tag markdown-to-image-serve:$(date +%s)
+      # 运行 shell 命令，构建 Docker 镜像
+      # . 表示当前目录为构建上下文
+      # --file Dockerfile 指定 Dockerfile 文件
+      # --tag markdown-to-image-serve:$(date +%s) 给镜像打标签，标签名为 markdown-to-image-serve:当前时间戳（秒级），这样每次构建镜像标签都唯一，避免冲突
