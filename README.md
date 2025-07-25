@@ -108,11 +108,11 @@ docker-compose up -d
 
 拉取镜像：
    ```bash
-   docker pull wxingheng/markdown-to-image-serve:0.0.2
+   docker pull wxingheng/markdown-to-image-serve:latest
    ```
 运行容器：
    ```bash
-   docker run -p 3000:3000 wxingheng/markdown-to-image-serve:0.0.2
+   docker run -p 3000:3000 wxingheng/markdown-to-image-serve:latest
    ```
 
 ---

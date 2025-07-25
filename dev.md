@@ -1,7 +1,7 @@
 <!--
  * @Author: wxingheng
  * @Date: 2025-07-23 17:55:43
- * @LastEditTime: 2025-07-25 09:07:30
+ * @LastEditTime: 2025-07-25 10:07:53
  * @LastEditors: wxingheng
  * @Description: Docker 镜像推送与使用说明
  * @FilePath: /markdown-to-image-serve/dev.md
@@ -60,11 +60,14 @@ docker compose build --no-cache
 ## 2. 直接使用 Docker
 
 ```bash
-docker build --platform=linux/amd64 -t markdown-to-image-serve .
-
 docker build -f Dockerfile -t markdown-to-image-serve .
-docker tag markdown-to-image-serve wxingheng/markdown-to-image-serve:0.0.2
-docker push wxingheng/markdown-to-image-serve:0.0.2
+
+docker tag markdown-to-image-serve wxingheng/markdown-to-image-serve:0.0.4
+docker tag markdown-to-image-serve wxingheng/markdown-to-image-serve:latest
+
+docker push wxingheng/markdown-to-image-serve:0.0.4
+docker push wxingheng/markdown-to-image-serve:latest
+
 docker run -p 3000:3000 markdown-to-image-serve
 ```
 
@@ -76,8 +79,17 @@ docker run -p 3000:3000 markdown-to-image-serve
 
 
 
-docker build -f Dockerfile.base -t node-chrome-base .
-docker tag node-chrome-base wxingheng/node-chrome-base:0.0.1
-docker push wxingheng/node-chrome-base:0.0.1
+docker build -f Dockerfile.base --platform=linux/amd64 -t node-chrome-base .
+
+docker tag node-chrome-base wxingheng/node-chrome-base:0.0.2
+docker tag node-chrome-base wxingheng/node-chrome-base:latest
+
+docker push wxingheng/node-chrome-base:0.0.2
+docker push wxingheng/node-chrome-base:latest
+
+
+
+
+
 
 
