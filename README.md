@@ -174,6 +174,10 @@ docker run -p 3000:3000 markdown-to-image-serve
 > export COMPOSE_DOCKER_CLI_BUILD=0
 > ```
 
+#### 🔧 Docker 设置帮助
+
+如果遇到 Docker Hub 推送权限问题，请参考：[Docker 设置指南](./DOCKER_SETUP.md)
+
 ---
 
 ## 📚 API 文档
