@@ -5,9 +5,10 @@
 ### 问题描述
 ```
 unauthorized: access token has insufficient scopes
+Error: Password required
 ```
 
-这个错误表明你的 Docker Hub 访问令牌权限不足。
+这些错误表明你的 Docker Hub 访问令牌权限不足或配置不正确。
 
 ### 解决方案
 
@@ -54,9 +55,9 @@ unauthorized: access token has insufficient scopes
    刚才生成的访问令牌
    ```
 
-3. **删除旧的 DOCKERHUB_PASSWORD** (如果存在)
-   - 找到 `DOCKERHUB_PASSWORD` secret
-   - 点击删除按钮移除它
+3. **删除旧的 Secrets** (如果存在)
+   - 找到并删除 `DOCKERHUB_PASSWORD` secret
+   - 确保没有重复的 secret
 
 #### 3. 验证设置
 
@@ -70,13 +71,30 @@ unauthorized: access token has insufficient scopes
 
 ### 🔍 故障排除
 
-#### 如果仍然遇到权限问题：
+#### 如果遇到 "Password required" 错误：
 
-1. **检查令牌权限**
+1. **检查 Secrets 名称**
+   ```yaml
+   # 确保使用正确的 secret 名称
+   username: ${{ secrets.DOCKERHUB_USERNAME }}
+   password: ${{ secrets.DOCKERHUB_TOKEN }}  # 不是 DOCKERHUB_PASSWORD
+   ```
+
+2. **验证令牌格式**
+   - 确保令牌是完整的，没有多余的空格
+   - 令牌通常以 `dckr_pat_` 开头
+
+3. **测试本地登录**
    ```bash
    # 测试登录
    echo "你的令牌" | docker login -u "你的用户名" --password-stdin
    ```
+
+#### 如果仍然遇到权限问题：
+
+1. **检查令牌权限**
+   - 确保令牌有 Read & Write 权限
+   - 确保令牌没有过期
 
 2. **验证仓库权限**
    - 确保你的 Docker Hub 账户有权限推送到 `wxingheng/markdown-to-image-serve`
@@ -97,6 +115,29 @@ unauthorized: access token has insufficient scopes
 **错误**: `manifest unknown: manifest unknown`
 **解决**: 这通常是构建问题，检查 Dockerfile 是否正确
 
+**错误**: `Password required`
+**解决**: 
+- 确保使用 `DOCKERHUB_TOKEN` 而不是 `DOCKERHUB_PASSWORD`
+- 检查令牌是否正确复制
+- 确保令牌没有过期
+
+### 🛠️ 备用解决方案
+
+如果复杂的工作流出现问题，可以使用简化的备用工作流：
+
+1. **启用备用工作流**
+   - 在 `.github/workflows/` 目录下创建 `docker-simple.yml`
+   - 使用更简单的构建和推送步骤
+
+2. **手动测试**
+   ```bash
+   # 本地测试构建
+   docker build -t test-image .
+   
+   # 本地测试登录
+   docker login -u your-username
+   ```
+
 ### 📋 最佳实践
 
 1. **使用专用令牌**
@@ -115,11 +156,19 @@ unauthorized: access token has insufficient scopes
    - 定期检查 Docker Hub 的使用统计
    - 监控镜像的下载和推送情况
 
+5. **使用环境变量**
+   ```yaml
+   env:
+     REGISTRY: docker.io
+     IMAGE_NAME: wxingheng/markdown-to-image-serve
+   ```
+
 ### 🔗 相关链接
 
 - [Docker Hub 访问令牌文档](https://docs.docker.com/docker-hub/access-tokens/)
 - [GitHub Actions Secrets 文档](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 - [Docker Hub 权限管理](https://docs.docker.com/docker-hub/repos/)
+- [Docker Login Action 文档](https://github.com/docker/login-action)
 
 ### 📞 获取帮助
 
@@ -128,6 +177,22 @@ unauthorized: access token has insufficient scopes
 1. **检查 Docker Hub 状态**: [Docker Hub Status](https://status.docker.com/)
 2. **查看 GitHub Actions 日志**: 在 Actions 标签页查看详细错误信息
 3. **联系支持**: 如果是 Docker Hub 问题，联系 Docker 支持
+
+### 🚀 快速修复步骤
+
+如果急需修复，按以下步骤操作：
+
+1. **立即创建新令牌**
+   - 登录 Docker Hub
+   - 创建新的访问令牌，选择 Read & Write 权限
+
+2. **更新 GitHub Secrets**
+   - 删除所有旧的 Docker Hub 相关 secrets
+   - 添加 `DOCKERHUB_USERNAME` 和 `DOCKERHUB_TOKEN`
+
+3. **测试推送**
+   - 推送一个小的更改到主分支
+   - 检查 Actions 是否成功
 
 ---
 
