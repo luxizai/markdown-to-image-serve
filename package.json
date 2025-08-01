@@ -5,7 +5,7 @@
     "email": "wxingheng@outlook.com"
   },
   "description": "A service that converts Markdown content to beautiful images with API support, offering customizable themes and layouts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
