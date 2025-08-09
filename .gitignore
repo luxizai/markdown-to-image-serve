@@ -10,3 +10,4 @@ node_modules
 public/uploads/posters/*
 .env.local
 .vercel
+.idea
